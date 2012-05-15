@@ -7,5 +7,9 @@ var Notebook = function() {
 		self.notes = [];
 	};
 	
+	self.addNote = function(note) {
+		
+	};
+	
 	self.initialize();
 };

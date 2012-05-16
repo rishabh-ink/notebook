@@ -1,7 +1,22 @@
 var NotebookTest = function() {
 	module("Notebook.js");
 	
-	test("Test stub", function() {
-		ok(true, "OK");	
+	ko.applyBindings(new Notebook());
+
+	test("Create Notebook: initialize", function() {
+		var note1 = new Note();
+		var note2 = new Note("Second note title", "Second note content");
+		
+		var notebook = Notebook();
+		
+		notebook.notes();
+	});
+
+	test("Create Notebook: addNote", function() {
+
+	});
+
+	test("Create Notebook: deleteNote", function() {
+
 	});
 };

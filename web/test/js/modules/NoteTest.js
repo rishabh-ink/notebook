@@ -38,4 +38,12 @@ var NoteTest = function() {
 		equal(note.isFavourited(), isFavourited, note.isFavourited() + " equals " + isFavourited);
 		equal(note.isStarred(), isStarred, note.isStarred() + " equals " + isStarred);
 	});
+	
+	test("InstanceOf Note: using dummy class", function() {
+		var goodNote = new Note();
+		var badObject = new Object();
+		
+		equal(goodNote instanceof Note, true, goodNote + " instanceof " + Note);
+		notEqual(badObject instanceof Note, true, badObject + " instanceof " + Note);
+	});
 };

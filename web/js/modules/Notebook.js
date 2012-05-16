@@ -7,9 +7,10 @@
  * @author Rishabh Rao
  * @since 0.0.1
  */
-var Notebook = function() {
+var Notebook = function(title) {
 	var self = this;
 	
+	self.title = ko.observable();
 	self.notes = ko.observableArray();
 	
 	/**
@@ -17,37 +18,38 @@ var Notebook = function() {
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	Notebook.prototype.initialize = function() {
-	};
-
-	/**
-	 * Appends a new <code>Note</code> object to the current <code>Notebook</code>.
-	 * @param note A <code>Note</code> object that needs to be added to the current <code>Notebook</code>.
-	 * @author Rishabh Rao
-	 * @since 0.0.1
-	 */
-	Notebook.prototype.addNote = function(note) {
-		if(!(note instanceof Note)) {
-			throw new Error("Notebook.prototype.addNote(): argument 'note' is not an instance of 'Note'.");
-		} else {
-			self.notes().push(note);
-		}
+	Notebook.prototype.initialize = function(title) {
+		self.setTitle(title);
 	};
 	
 	/**
-	 * Deletes a <code>Note</code> object from the current <code>Notebook</code>.
-	 * If the <code>Note</code> object does not exist, this method does nothing.
-	 * @param note The <code>Note</code> object to be deleted.
+	 * Setter for title.
+	 * @param {String} title A short title for the Notebook.
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	Notebook.prototype.deleteNote = function(note) {
-		if(!(note instanceof Note)) {
-			throw new Error("Notebook.prototype.addNote(): argument 'note' is not an instance of 'Note'.");
-		} else {
-			self.notes().remove(note);
-		}
+	Note.prototype.setTitle = function(title) {
+		$.trim(title) ? self.title($.trim(title)) : self.title("No title");
 	};
 	
-	self.initialize();
+	/**
+	 * Appends a note to the list of notes in this notebook.
+	 * @param {Note} note The new note to be appended.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Note.prototype.addNote = function(note) {
+		self.notes().push(note);
+	};
+	
+	/**
+	 * Removes the note from the list of notes in this notebook.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Note.prototype.removeNote = function() {
+		self.notes().remove(this);
+	};
+	
+	self.initialize(title);
 };

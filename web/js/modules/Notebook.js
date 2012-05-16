@@ -12,23 +12,42 @@ var Notebook = function() {
 	
 	self.notes = ko.observableArray();
 	
-	self.initialize();
-};
+	/**
+	 * Intializes the <code>Notebook</code> object.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Notebook.prototype.initialize = function() {
+	};
 
-/**
- * Intializes the <code>Notebook</code> object.
- * @author Rishabh Rao
- * @since 0.0.1
- */
-Notebook.prototype.initialize = function() {
-};
-
-/**
- * Appends a new <code>Note</code> object to the current <code>Notebook</code>.
- * @param note A <code>Note</code> object that needs to be added to the current <code>Notebook</code>.
- * @author Rishabh Rao
- * @since 0.0.1
- */
-Notebook.prototype.addNote = function(note) {
+	/**
+	 * Appends a new <code>Note</code> object to the current <code>Notebook</code>.
+	 * @param note A <code>Note</code> object that needs to be added to the current <code>Notebook</code>.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Notebook.prototype.addNote = function(note) {
+		if(!(note instanceof Note)) {
+			throw new Error("Notebook.prototype.addNote(): argument 'note' is not an instance of 'Note'.");
+		} else {
+			self.notes().push(note);
+		}
+	};
 	
+	/**
+	 * Deletes a <code>Note</code> object from the current <code>Notebook</code>.
+	 * If the <code>Note</code> object does not exist, this method does nothing.
+	 * @param note The <code>Note</code> object to be deleted.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Notebook.prototype.deleteNote = function(note) {
+		if(!(note instanceof Note)) {
+			throw new Error("Notebook.prototype.addNote(): argument 'note' is not an instance of 'Note'.");
+		} else {
+			self.notes().remove(note);
+		}
+	};
+	
+	self.initialize();
 };

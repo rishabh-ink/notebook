@@ -2,7 +2,12 @@
 
 */
 
-$(document).ready(function(){
+$(document).ready(function() {
+	// Attach the error handler.
+	$(window).error(function(error, fileName, lineNumber) {
+		debug.error(error, fileName, lineNumber);
+	});
+	
 	debug.group("Notebook");
 	debug.info("Starting Notebook...");
 	

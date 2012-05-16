@@ -40,7 +40,7 @@ var Note = function(title, content) {
 	 * @since 0.0.1
 	 */
 	Note.prototype.setTitle = function(title) {
-		(null == title) ? self.title("No title") : self.title($.trim(title));
+		$.trim(title) ? self.title($.trim(title)) : self.title("No title");
 	};
 	
 	/**
@@ -50,7 +50,7 @@ var Note = function(title, content) {
 	 * @since 0.0.1
 	 */
 	Note.prototype.setContent = function(content) {
-		(null == content) ? self.content("No content") : self.content($.trim(content));
+		$.trim(content) ? self.content($.trim(content)) : self.content("No content");
 	};
 	
 	self.initialize(title, content);

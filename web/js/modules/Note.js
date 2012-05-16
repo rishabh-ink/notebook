@@ -24,13 +24,33 @@ var Note = function(title, content) {
 	 * @since 0.0.1
 	 */
 	Note.prototype.initialize = function(title, content) {
-		(null == title) ? self.title("No title") : self.title(title);
-		(null == content) ? self.content("No content") : self.content(content);
+		self.setTitle(title);
+		self.setContent(content);
 		self.createdOn(new Date());
 		self.isFavourited(false);
 		self.isStarred(false);
 
 		debug.info("Successfully created note!", self.title(), self.content(), self.createdOn(), self.isFavourited(), self.isStarred());
+	};
+	
+	/**
+	 * Setter for title.
+	 * @param {String} title A short title for the Note.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Note.prototype.setTitle = function(title) {
+		(null == title) ? self.title("No title") : self.title($.trim(title));
+	};
+	
+	/**
+	 * Setter for content.
+	 * @param {String} content A descriptive content for the Note.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	Note.prototype.setContent = function(content) {
+		(null == content) ? self.content("No content") : self.content($.trim(content));
 	};
 	
 	self.initialize(title, content);

@@ -53,5 +53,14 @@ var Note = function(title, content) {
 		$.trim(content) ? self.content($.trim(content)) : self.content("No content");
 	};
 	
+	/**
+	 * Toggles starred.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.toggleStar = function() {
+		self.isStarred(!self.isStarred());
+	};
+	
 	self.initialize(title, content);
 };

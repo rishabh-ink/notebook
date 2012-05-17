@@ -14,7 +14,21 @@ body {
 /* ===== Primary Styles ========================================================
    Author:
    ========================================================================== */
+textarea {
+	resize: vertical;
+}
 
+div.welcome-text {
+    text-align: center;
+}
+
+/* Override width */
+@media (max-width: 767px) {
+    [class*="span"],
+    .row-fluid [class*="span"] {
+        width: 100%;
+    }
+}
 
 
 

@@ -12,18 +12,14 @@ var Notebook = function() {
 	
 	self.notes = ko.observableArray();
 	
+	self.isEmpty = ko.observable(true);
+	
 	/**
 	 * Intializes the <code>Notebook</code> object.
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
 	self.initialize = function() {	
-		debug.log("Creating sample note.");
-		var note = new Note("New note " + self.notes.length, "New note " + self.notes.length);
-		
-		debug.log("Pushing sample note to notes.", note);
-		self.notes.push(note);
-		
 		debug.info("Successfully created notebook!", self);
 	};
 	
@@ -34,7 +30,11 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.addNote = function() {
-		var note = new Note("New note", "New note");
+		var title = $("#note-title").val();
+		var content = $("#note-content").val();
+		
+		var note = new Note(title, content);
+		
 		debug.info("Adding new note...", note);
 		
 		self.notes(self.notes().reverse());
@@ -57,17 +57,25 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.postProcess = function(domnode, index, item) {
+		// FIXME This method is being called 3 times.
 		// Initialize jQuery timeago.
 		$("time.timeago").timeago();
 		
-		$(".jeditable-title").editable(function(value, settings) {
-			debug.log("Title edited", value, settings);
-		});
-		
-		$(".jeditable-content").editable(function(value, settings) {
-			debug.log("Title edited", value, settings);
-		});
+		if(self.notes().length == 0) {
+			self.isEmpty(true);
+		} else {
+			self.isEmpty(false);
+		}
 	};
 	
+	/**
+	 * Makes the user focus on the create note form.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.focusCreateNote = function() {
+		$("#note-title").focus();
+	};
+
 	self.initialize();
 };

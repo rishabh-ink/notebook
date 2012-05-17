@@ -13,14 +13,14 @@ $(document).ready(function() {
 	
 	// Create main Application object.
 	debug.group("Main Application object");
-	debug.info("Creating main Application object...");
-	var mainApplication = new Application();
-	debug.info("Main Application object created successfully.", mainApplication);
+	debug.info("Creating main Notebook object...");
+	var mainNotebook = new Notebook();
+	debug.info("Main Notebook object created successfully.", mainNotebook);
 	debug.groupEnd();
 	
 	// Apply Knockout bindings.
-	debug.info("Applying Knockout bindings", mainApplication);
-	ko.applyBindings(mainApplication);
+	debug.info("Applying Knockout bindings", mainNotebook);
+	ko.applyBindings(mainNotebook);
 	
 	debug.groupEnd();
 });

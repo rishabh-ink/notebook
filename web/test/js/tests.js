@@ -9,7 +9,4 @@ $(document).ready(function(){
 	
 	// Run tests for Notebook.
 	NotebookTest();
-	
-	// Run tests for Application.
-	ApplicationTest();
 });

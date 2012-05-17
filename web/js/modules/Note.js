@@ -30,7 +30,7 @@ var Note = function(title, content) {
 		self.isFavourited(false);
 		self.isStarred(false);
 
-		debug.info("Successfully created note!", self.title(), self.content(), self.createdOn(), self.isFavourited(), self.isStarred());
+		debug.info("Successfully created note!", self);
 	};
 	
 	/**

@@ -20,6 +20,14 @@ var Notebook = function(title) {
 	 */
 	Notebook.prototype.initialize = function(title) {
 		self.setTitle(title);
+		
+		debug.log("Creating sample note.");
+		var note = new Note("New note " + self.notes.length, "New note " + self.notes.length);
+		
+		debug.log("Pushing sample note to notes.", note);
+		self.notes.push(note);
+		
+		debug.info("Successfully created notebook!", self);
 	};
 	
 	/**
@@ -28,7 +36,7 @@ var Notebook = function(title) {
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	Note.prototype.setTitle = function(title) {
+	Notebook.prototype.setTitle = function(title) {
 		$.trim(title) ? self.title($.trim(title)) : self.title("No title");
 	};
 	

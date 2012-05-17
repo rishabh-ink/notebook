@@ -18,6 +18,10 @@ $(document).ready(function() {
 	debug.info("Main Application object created successfully.", mainApplication);
 	debug.groupEnd();
 	
+	// Apply Knockout bindings.
+	debug.info("Applying Knockout bindings", mainApplication);
+	ko.applyBindings(mainApplication);
+	
 	debug.groupEnd();
 });
 

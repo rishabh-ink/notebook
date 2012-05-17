@@ -51,5 +51,23 @@ var Notebook = function() {
 		self.notes.remove(this);
 	};
 	
+	/**
+	 * Performs post processing on the newly added note.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.postProcess = function(domnode, index, item) {
+		// Initialize jQuery timeago.
+		$("time.timeago").timeago();
+		
+		$(".jeditable-title").editable(function(value, settings) {
+			debug.log("Title edited", value, settings);
+		});
+		
+		$(".jeditable-content").editable(function(value, settings) {
+			debug.log("Title edited", value, settings);
+		});
+	};
+	
 	self.initialize();
 };

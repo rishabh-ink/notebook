@@ -26,7 +26,7 @@ var Note = function(title, content) {
 	Note.prototype.initialize = function(title, content) {
 		self.setTitle(title);
 		self.setContent(content);
-		self.createdOn(new Date());
+		self.createdOn(new Date().toISOString());
 		self.isFavourited(false);
 		self.isStarred(false);
 

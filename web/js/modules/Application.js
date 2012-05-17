@@ -41,5 +41,11 @@ var Application = function() {
 		debug.info("Selected notebook", notebook);
 	};
 	
+	Application.prototype.addNotebook = function() {
+		var notebook = new Notebook("New notebook");
+		debug.info("Adding notebook", notebook);
+		self.notebooks.push(notebook);
+	};
+	
 	self.initialize();
 };

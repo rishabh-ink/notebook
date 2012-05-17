@@ -46,7 +46,9 @@ var Notebook = function(title) {
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	Note.prototype.addNote = function(note) {
+	Note.prototype.addNote = function() {
+		var note = new Note("New note", "New note");
+		debug.info("Adding new note...", note);
 		self.notes().push(note);
 	};
 	

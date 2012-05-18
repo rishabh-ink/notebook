@@ -557,7 +557,7 @@
   </if>
   </target>
 
-	  <!-- Comment out debug.* commands from main scripts -->
+	<!-- Comment out debug.* commands from main scripts -->
 	<target name="js.remove.debug" description="Comment out debug.* lines">
 		<echo>Commenting out debug.log lines</echo>
 		<replaceregexp match="(debug.*\(.*\))" replace="/\*\1\*/" flags="g" >

@@ -79,7 +79,7 @@ var Notebook = function(storeManager) {
 	 */
 	self.focusCreateNote = function() {
 		$("#createNewNoteDiv").collapse('show');
-		$("#note-title").focus();
+		$("#noteTitle").focus();
 	};
 	
 	/**

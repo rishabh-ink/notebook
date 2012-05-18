@@ -176,6 +176,15 @@ var Notebook = function(storeManager) {
 		element.toggleStar();
 		self.saveNotes();
 	};
+	
+	/**
+	 * Hides/shows About Me box.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.toggleAboutModal = function() {
+		$("#aboutMe").modal("toggle");
+	};
 
 	self.initialize();
 };

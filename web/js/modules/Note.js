@@ -24,6 +24,8 @@ var Note = function(title, content) {
 	 * @since 0.0.1
 	 */
 	Note.prototype.initialize = function(title, content) {
+		self.fixIsoStringBug();
+		
 		self.setTitle(title);
 		self.setContent(content);
 		self.createdOn(new Date().toISOString());
@@ -60,6 +62,38 @@ var Note = function(title, content) {
 	 */
 	self.toggleStar = function() {
 		self.isStarred(!self.isStarred());
+	};
+	
+	/**
+	 * Fixes the missing Date.toISOString in browsers which don't have this function.
+	 * @author Robert S. Robbins (williamsportwebdeveloper.com/cgi/wp/?p=503)
+	 */
+	Note.prototype.fixIsoStringBug = function() {
+		if (!Date.toISOString) {
+			var padzero = function(n) {
+				return n < 10 ? '0' + n : n;
+			};
+			
+			var pad2zeros = function(n) {
+				if (n < 100) {
+					n = '0' + n;
+				}
+				if (n < 10) {
+					n = '0' + n;
+				}
+				return n;
+			};
+			
+			Date.prototype.toISOString = function() {
+				return this.getUTCFullYear() + '-'
+						+ padzero(this.getUTCMonth() + 1) + '-'
+						+ padzero(this.getUTCDate()) + 'T'
+						+ padzero(this.getUTCHours()) + ':'
+						+ padzero(this.getUTCMinutes()) + ':'
+						+ padzero(this.getUTCSeconds()) + '.'
+						+ pad2zeros(this.getUTCMilliseconds()) + 'Z';
+			};
+		}
 	};
 	
 	self.initialize(title, content);

@@ -40,23 +40,23 @@ $(document).ready(function() {
 			noteTitle: "",
 			noteContent: ""
 		},
-		highlight: function(element) {
-	        $(element).parent().parent().addClass("error");
-	    },
-	    unhighlight: function(element) {
-	        $(element).parent().parent().removeClass("error");
-	    }
+		highlight : function(element) {
+			$(element).parent().parent().addClass("error");
+		},
+		unhighlight : function(element) {
+			$(element).parent().parent().removeClass("error");
+		}
 
 	});
 
 	// Intialize tooltip.
-	$('a, button, input, textarea').tooltip({
+	$('a, button, input, textarea, img').tooltip({
 		animation: true
 	});
 	
 	// Remove hide class when everything is ready.
-	$("#pageContainer").removeClass("hide");
-	
+	$("#pageContainer").fadeIn(1500);
+
 	debug.groupEnd();
 });
 

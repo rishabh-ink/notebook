@@ -8148,6 +8148,97 @@ div.welcome-text {
 .mandatory-star {
   color: #ff4a4a;
 }
+.thanks a {
+  display: inline-block;
+}
+.thanks a.product-sprite {
+  background: url('http://rishabhsrao.github.com/img/footer/footer.png') no-repeat;
+  height: 16px;
+}
+.thanks a.product-sprite.html5 {
+  width: 57px;
+  background-position: -259px 0px;
+}
+.thanks a.product-sprite.humanstxt {
+  width: 81px;
+  background-position: -316px 0px;
+}
+.thanks ol {
+  list-style: none;
+}
+.thanks ol li {
+  display: inline;
+  line-height: 0px;
+  margin-right: 20px;
+}
+.thanks ol li a.product-sprite.jquery {
+  width: 65px;
+  background-position: -413px 0px;
+}
+.thanks ol li a.product-sprite.initializr {
+  width: 16px;
+  background-position: -397px 0px;
+}
+.thanks ol li a.product-sprite.h5bp {
+  width: 16px;
+  background-position: -243px 0px;
+}
+.thanks ol li a.product-sprite.twitter {
+  width: 69px;
+  background-position: -574px 0px;
+}
+.thanks ol li a.product-sprite.knockoutjs {
+  width: 16px;
+  background-position: -478px 0px;
+}
+.thanks ol li a.product-sprite.bootstrap {
+  width: 65px;
+  background-position: -576px 0px;
+}
+.thanks ol li a.product-sprite.opensuse {
+  width: 25px;
+  background-position: -533px 0px;
+}
+.thanks ol li a.product-sprite.firefox {
+  width: 16px;
+  background-position: -32px 0px;
+}
+.thanks ol li a.product-sprite.eclipse {
+  width: 29px;
+  background-position: -48px 0px;
+}
+.thanks ol li a.product-sprite.github {
+  width: 43px;
+  background-position: -112px 0px;
+}
+.thanks ol li a.product-sprite.git {
+  width: 35px;
+  background-position: -77px 0px;
+}
+.thanks ol li a.product-sprite.webfonts {
+  width: 88px;
+  background-position: -155px 0px;
+}
+.thanks ol li a.product-sprite.rloader {
+  width: 16px;
+  background-position: -558px 0px;
+}
+.thanks ol li a.product-sprite.badebug {
+  width: 16px;
+  background-position: 0px 0px;
+}
+.thanks ol li a.product-sprite.lessjs {
+  width: 39px;
+  background-position: -494px 0px;
+}
+.thanks ol li a.product-sprite.colourlovers {
+  width: 16px;
+  background-position: -16px 0px;
+}
+.thanks ol li a.product-sprite.wegraphics {
+  width: 69px;
+  background-position: -643px 0px;
+}
 /* Override width */
 @media (max-width: 767px) {
   [class*="span"],

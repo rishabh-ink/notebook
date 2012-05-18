@@ -9,6 +9,8 @@
  */
 var Notebook = function(storeManager) {
 	var self = this;
+	
+	self.STORE_KEY = "NOTEBOOK_STORE";
 
 	self.notes = ko.observableArray();
 	self.isEmpty = ko.observable(true);
@@ -19,6 +21,8 @@ var Notebook = function(storeManager) {
 	 * @since 0.0.1
 	 */
 	self.initialize = function() {
+		self.loadNotes();
+		
 		self.updateIsEmpty();
 		
 		debug.info("Successfully created notebook!", self);
@@ -48,6 +52,7 @@ var Notebook = function(storeManager) {
 			$("#noteContent").val("");
 		}
 		
+		self.saveNotes();
 		self.updateIsEmpty();
 	};
 	
@@ -58,6 +63,7 @@ var Notebook = function(storeManager) {
 	 */
 	self.removeNote = function(note) {
 		self.notes.remove(note);
+		self.saveNotes();
 		self.updateIsEmpty();
 	};
 	
@@ -93,6 +99,82 @@ var Notebook = function(storeManager) {
 		} else {
 			self.isEmpty(false);
 		}
+	};
+	
+	/**
+	 * Loads the notes stored in localStorage.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.loadNotes = function() {
+		debug.info("Attempting to load from localstorage...");
+		if(Modernizr.localstorage) {
+			debug.log("Checking for previously stored data...");
+			var notebookData = localStorage.getItem(self.STORE_KEY);
+			
+			if(notebookData) {
+				debug.info("Found previously stored data! Applying Knockout mapping...", notebookData);
+				var notesJSON = JSON.parse(notebookData);
+				
+				$.each(notesJSON, function(index, item) {
+					debug.log(index, item);
+					var note = new Note();
+					
+					note.setTitle(item.title);
+					note.setContent(item.content);
+					note.createdOn(item.createdOn);
+					note.isFavourited(item.isFavourited);
+					note.isStarred(item.isStarred);
+					
+					self.notes.push(note);
+				});
+			} else {
+				debug.warn("No previously stored data found.");
+			}
+			
+		} else {
+			debug.warn("No localstorage capability found.");
+		}
+	};
+	
+	/**
+	 * Saves the notes to localStorage.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.saveNotes = function() {
+		debug.info("Attempting to save to localstorage...");
+		if(Modernizr.localstorage) {
+			localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
+		} else {
+			debug.warn("No localstorage capability found.");
+		}
+	};
+	
+	/**
+	 * Deletes all notes and clears local storage.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.deleteAllNotes = function() {
+		if(self.isEmpty()) {
+			return;
+		} else {
+			debug.log("Removing all notes and clearing local storage.");
+			self.notes.removeAll();
+			self.saveNotes();
+			self.updateIsEmpty();
+		}
+	};
+	
+	/**
+	 * Handles clicking of the heart/star button.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.toggleStar = function(element) {
+		element.toggleStar();
+		self.saveNotes();
 	};
 
 	self.initialize();

@@ -48,6 +48,11 @@ $(document).ready(function() {
 	    }
 
 	});
+
+	// Intialize tooltip.
+	$('a, button, input, textarea').tooltip({
+		animation: true
+	});
 	
 	debug.groupEnd();
 });

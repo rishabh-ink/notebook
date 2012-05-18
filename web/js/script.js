@@ -16,8 +16,8 @@ $(document).ready(function() {
 	// Create main Application object.
 	debug.group("Main Application object");
 	debug.info("Creating main Notebook object...");
-	var storeManager = new Storage();
-	var mainNotebook = storeManager.loadModel();
+
+	var mainNotebook = new Notebook();
 	debug.info("Main Notebook object created successfully.", mainNotebook);
 	debug.groupEnd();
 	

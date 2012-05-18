@@ -9,11 +9,8 @@
  */
 var Notebook = function(storeManager) {
 	var self = this;
-	
-	self.storeManager = storeManager;
-	
+
 	self.notes = ko.observableArray();
-	
 	self.isEmpty = ko.observable(true);
 	
 	/**
@@ -22,8 +19,6 @@ var Notebook = function(storeManager) {
 	 * @since 0.0.1
 	 */
 	self.initialize = function() {
-		
-		
 		self.updateIsEmpty();
 		
 		debug.info("Successfully created notebook!", self);
@@ -53,8 +48,6 @@ var Notebook = function(storeManager) {
 			$("#noteContent").val("");
 		}
 		
-		self.storeManager.storeModel();
-		
 		self.updateIsEmpty();
 	};
 	
@@ -65,9 +58,6 @@ var Notebook = function(storeManager) {
 	 */
 	self.removeNote = function(note) {
 		self.notes.remove(note);
-		
-		self.storeManager.storeModel();
-		
 		self.updateIsEmpty();
 	};
 	

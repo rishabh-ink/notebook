@@ -1,1 +1,1 @@
-
+$(document).ready(function(){$(window).error(function(a,b,c){debug.error(a,b,c)});debug.group("Notebook");debug.info("Starting Notebook...");debug.group("Main Application object");debug.info("Creating main Notebook object...");var a=new Notebook;debug.info("Main Notebook object created successfully.",a);debug.groupEnd();debug.info("Applying Knockout bindings",a);ko.applyBindings(a);debug.groupEnd()});

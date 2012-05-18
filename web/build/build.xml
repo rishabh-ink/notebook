@@ -557,6 +557,16 @@
   </if>
   </target>
 
+	  <!-- Comment out debug.* commands from main scripts -->
+	<target name="js.remove.debug" description="Comment out debug.* lines">
+		<echo>Commenting out debug.log lines</echo>
+		<replaceregexp match="(debug.*\(.*\))" replace="/\*\1\*/" flags="g" >
+			<fileset dir="./${dir.publish}/${dir.js}/">
+				<include name="**/*.js"/>
+				<exclude name="**/*.min.js"/>
+			</fileset>
+		</replaceregexp>
+	</target>
 
   <target name="-js.all.minify" depends="-mkdirs" description="(PRIVATE) Minifies the scripts.js files created by js.scripts.concat">
       <echo message="Minifying scripts"/>

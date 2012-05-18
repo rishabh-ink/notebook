@@ -30,8 +30,19 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.addNote = function() {
-		var title = $("#note-title").val();
-		var content = $("#note-content").val();
+		$("#createNewNoteForm").validate({
+			rules: {
+				noteTitle: {
+					required: true
+				},
+				noteContent: {
+					required: true
+				}
+			}
+		});
+		
+		var title = $("#noteTitle").val();
+		var content = $("#noteContent").val();
 		
 		var note = new Note(title, content);
 		
@@ -74,6 +85,7 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.focusCreateNote = function() {
+		$("#createNewNoteDiv").collapse('show');
 		$("#note-title").focus();
 	};
 

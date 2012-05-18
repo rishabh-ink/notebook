@@ -8136,6 +8136,15 @@ textarea {
 div.welcome-text {
   text-align: center;
 }
+.notes .note-actions {
+  width: 1%;
+}
+.notes .note-display {
+  width: 75%;
+}
+.notes .note-when {
+  width: 24%;
+}
 /* Override width */
 @media (max-width: 767px) {
   [class*="span"],

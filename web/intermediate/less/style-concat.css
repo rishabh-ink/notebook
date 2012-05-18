@@ -8128,7 +8128,7 @@ body {
   }
 }
 /* ===== Primary Styles ========================================================
-   Author:
+   Author: See humans.txt
    ========================================================================== */
 textarea {
   resize: vertical;
@@ -8144,6 +8144,9 @@ div.welcome-text {
 }
 .notes .note-when {
   width: 24%;
+}
+.mandatory-star {
+  color: #ff4a4a;
 }
 /* Override width */
 @media (max-width: 767px) {

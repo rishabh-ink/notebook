@@ -10,14 +10,14 @@
 <meta http-equiv=X-UA-Compatible content="IE=edge,chrome=1">
 
 <title></title>
-<meta name=description content="">
-<meta name=author content="">
+<meta name=description content="A Note taking application.">
+<meta name=author content="Rishabh Rao">
 
 <meta name=viewport content="width=device-width">
 
 
 
-<link rel=stylesheet href='less/a341557.css'>
+<link rel=stylesheet href='less/964f935.css'>
 
 
 <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
@@ -44,7 +44,7 @@
 		</div>
 	</div>
 
-	<div class=container>
+	<div id=pageContainer class="container hide">
 		<div class=container-fluid>
 			<div class=row-fluid>
 				<div class=span3>
@@ -64,14 +64,14 @@
 												</div>
 											</div>
 											<div class="control-group noteContent-control-group">
-												<label class=control-label for=noteContent>Content</label>
+												<label class=control-label for=noteContent>Content<span class=mandatory-star>*</span></label>
 												<div class=controls>
-													<textarea name=noteContent class=span12 id=noteContent title="What would you like your note to contain?" maxlength=1024></textarea>
+													<textarea name=noteContent class=span12 id=noteContent title="What would you like your note to contain? This ones required." maxlength=1024></textarea>
 												</div>
 											</div>
 										</fieldset>
 										<fieldset>
-											<button class="btn btn-success span12" data-bind="click: addNote" title="Creates your note!">
+											<button class="btn btn-success span12" data-bind="click: addNote">
 												<i class=icon-plus></i> Add note
 											</button>
 										</fieldset>
@@ -94,10 +94,17 @@
 					</div>
 
 					<div class=well>
-						<h6>My Notes</h6>
-
-						<hr/>
-
+						<div class=row-fluid>
+							<div class=span10>
+								<h6>My Notes</h6>
+							</div>
+							<div class=span2 data-bind="if: !isEmpty()">
+								<a class="btn btn-danger btn-mini" data-bind="{ click: deleteAllNotes }">
+									<i class=icon-remove></i> Delete all notes
+								</a>
+							</div>
+						</div>
+						
 						<div class=row-fluid>
 							<div class=span12>
 								<div class=welcome-text data-bind="if: isEmpty">
@@ -111,14 +118,14 @@
 									<tbody data-bind="foreach: { data: notes, afterRender: postProcess }">
 										<tr>
 											<td class=note-actions>
-												<button class=btn data-bind="click: toggleStar">
-													<i data-bind="css: { 'icon-star': isStarred, 'icon-star-empty': !(isStarred()) }"></i>
+												<button class="btn btn-info" data-bind="click: $parent.toggleStar">
+													<i data-bind="css: { 'icon-heart': isStarred, 'icon-': !(isStarred()) }"></i>
 												</button>
 											</td>
 											<td class=note-display>
 												<div class=row-fluid>
 													<div class=span12>
-														<span class=title data-bind="text: title"></span>
+														<h5><span class=title data-bind="text: title"></span></h5>
 													</div>
 												</div>
 												<div class=row-fluid>
@@ -129,7 +136,7 @@
 											</td>
 											<td class=note-when><time class=timeago data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
 											<td class=note-actions>
-												<button class="btn btn-danger" data-bind="click: $parent.removeNote">
+												<button class="btn btn-warning btn-mini" data-bind="click: $parent.removeNote">
 													<i class=icon-remove></i>
 												</button>
 											</td>
@@ -153,7 +160,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 	<script>window.jQuery||document.write('<script src="js/libs/jquery-1.7.2.min.js"><\/script>');</script>
 
-	<script defer src='js/8055eb5.js'></script>
+	<script defer src='js/4149439.js'></script>
 
 	
 </body>

@@ -7,8 +7,10 @@
  * @author Rishabh Rao
  * @since 0.0.1
  */
-var Notebook = function() {
+var Notebook = function(storeManager) {
 	var self = this;
+	
+	self.storeManager = storeManager;
 	
 	self.notes = ko.observableArray();
 	
@@ -19,7 +21,11 @@ var Notebook = function() {
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	self.initialize = function() {	
+	self.initialize = function() {
+		
+		
+		self.updateIsEmpty();
+		
 		debug.info("Successfully created notebook!", self);
 	};
 	
@@ -47,6 +53,8 @@ var Notebook = function() {
 			$("#noteContent").val("");
 		}
 		
+		self.storeManager.storeModel();
+		
 		self.updateIsEmpty();
 	};
 	
@@ -57,6 +65,8 @@ var Notebook = function() {
 	 */
 	self.removeNote = function(note) {
 		self.notes.remove(note);
+		
+		self.storeManager.storeModel();
 		
 		self.updateIsEmpty();
 	};

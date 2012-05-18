@@ -24,6 +24,30 @@ $(document).ready(function() {
 	debug.info("Applying Knockout bindings", mainNotebook);
 	ko.applyBindings(mainNotebook);
 	
+	// Initialize jquery.validate.
+	debug.info("Initializing jQuery.validate");
+	$("#createNewNoteForm").validate({
+		rules: {
+			noteTitle: {
+				required: true
+			},
+			noteContent: {
+				required: true
+			}
+		},
+		messages: {
+			noteTitle: "",
+			noteContent: ""
+		},
+		highlight: function(element) {
+	        $(element).parent().parent().addClass("error");
+	    },
+	    unhighlight: function(element) {
+	        $(element).parent().parent().removeClass("error");
+	    }
+
+	});
+	
 	debug.groupEnd();
 });
 

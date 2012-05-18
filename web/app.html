@@ -61,11 +61,13 @@
 								<div class="accordion-inner">
 									<form id="createNewNoteForm" action="" method="POST">
 										<fieldset>
-											<div class="control-group">
+											<div class="control-group noteTitle-control-group">
 												<label class="control-label" for="noteTitle">Title</label>
 												<div class="controls">
 													<input name="noteTitle" type="text" class="span12" id="noteTitle" title="What would you like to call your note?" maxlength="256" />
 												</div>
+											</div>
+											<div class="control-group noteContent-control-group">
 												<label class="control-label" for="noteContent">Content</label>
 												<div class="controls">
 													<textarea name="noteContent" class="span12" id="noteContent" title="What would you like your note to contain?" maxlength="1024"></textarea>
@@ -130,6 +132,11 @@
 												</div>
 											</td>
 											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
+											<td class="note-actions">
+												<button class="btn" data-bind="click: $parent.removeNote">
+													<i class="icon-remove"></i>
+												</button>
+											</td>
 										</tr>
 									</tbody>
 								</table>

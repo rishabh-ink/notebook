@@ -30,27 +30,24 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.addNote = function() {
-		$("#createNewNoteForm").validate({
-			rules: {
-				noteTitle: {
-					required: true
-				},
-				noteContent: {
-					required: true
-				}
-			}
-		});
+		if($("#createNewNoteForm").valid()) {
+			var title = $("#noteTitle").val();
+			var content = $("#noteContent").val();
+			
+			var note = new Note(title, content);
+			
+			debug.info("Adding new note...", note);
+			
+			self.notes(self.notes().reverse());
+			self.notes.push(note);
+			self.notes(self.notes().reverse());
+			
+			// Clear the input fields.
+			$("#noteTitle").val("");
+			$("#noteContent").val("");
+		}
 		
-		var title = $("#noteTitle").val();
-		var content = $("#noteContent").val();
-		
-		var note = new Note(title, content);
-		
-		debug.info("Adding new note...", note);
-		
-		self.notes(self.notes().reverse());
-		self.notes.push(note);
-		self.notes(self.notes().reverse());
+		self.updateIsEmpty();
 	};
 	
 	/**
@@ -58,8 +55,10 @@ var Notebook = function() {
 	 * @author Rishabh Rao
 	 * @since 0.0.1
 	 */
-	self.removeNote = function() {
-		self.notes.remove(this);
+	self.removeNote = function(note) {
+		self.notes.remove(note);
+		
+		self.updateIsEmpty();
 	};
 	
 	/**
@@ -71,12 +70,6 @@ var Notebook = function() {
 		// FIXME This method is being called 3 times.
 		// Initialize jQuery timeago.
 		$("time.timeago").timeago();
-		
-		if(self.notes().length == 0) {
-			self.isEmpty(true);
-		} else {
-			self.isEmpty(false);
-		}
 	};
 	
 	/**
@@ -87,6 +80,19 @@ var Notebook = function() {
 	self.focusCreateNote = function() {
 		$("#createNewNoteDiv").collapse('show');
 		$("#note-title").focus();
+	};
+	
+	/**
+	 * Updates isEmpty in order to show no notes message.
+	 * @author Rishabh Rao
+	 * @since 0.0.1
+	 */
+	self.updateIsEmpty = function() {
+		if(self.notes().length == 0) {
+			self.isEmpty(true);
+		} else {
+			self.isEmpty(false);
+		}
 	};
 
 	self.initialize();

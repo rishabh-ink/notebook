@@ -54,6 +54,9 @@ $(document).ready(function() {
 		animation: true
 	});
 	
+	// Remove hide class when everything is ready.
+	$("#pageContainer").removeClass("hide");
+	
 	debug.groupEnd();
 });
 

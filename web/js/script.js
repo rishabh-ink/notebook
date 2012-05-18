@@ -30,7 +30,7 @@ $(document).ready(function() {
 	$("#createNewNoteForm").validate({
 		rules: {
 			noteTitle: {
-				required: true
+				required: false
 			},
 			noteContent: {
 				required: true

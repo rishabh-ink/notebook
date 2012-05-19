@@ -1,7 +1,6 @@
 
 @import "bootstrap\bootstrap.less";
 @import "bootstrap\variables.less";
-@import "bootstrap\bootswatch-cerulean.less";
 
 body {
   padding-top: 60px;
@@ -19,26 +18,32 @@ body {
 textarea {
 	resize: vertical;
 }
+#importExportModal {
+    textarea {
+        #font > #family > .monospace;
+        height: 400px; /* Modal window's max height. */
+    }
+}
 
 div.welcome-text {
     text-align: center;
 }
 
 .notes {
-    .content {
-        font-size: 1.1em;
+    .note-like {
+        width: 9%;
     }
     
     .note-actions {
-        width: 1%;
+        width: 9%;
     }
     
     .note-display {
-       width: 74%;
+       width: 62%;
     }
     
     .note-when {
-       width: 24%;
+       width: 20%;
     }
 }
 
@@ -47,6 +52,10 @@ div.welcome-text {
 }
 
 .thanks {
+    .created-by {
+        text-align: center;
+    }
+    
     a {
         display: inline-block;
     }

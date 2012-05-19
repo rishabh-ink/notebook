@@ -60,7 +60,7 @@
 					<div id="createNewNoteAccordion" class="accordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle">Create New Note</a>
+								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle">Create new note</a>
 							</div>
 							<div class="accordion-body collapse" id="createNewNoteDiv" style="height: 0px;">
 								<div class="accordion-inner">
@@ -80,7 +80,7 @@
 											</div>
 										</fieldset>
 										<fieldset>
-											<input type="submit" class="btn btn-success span12" data-bind="click: addNote" value="Add note" />
+											<input type="submit" class="btn btn-success span12" data-bind="click: addNote" value="Save" />
 										</fieldset>
 									</form>
 								</div>
@@ -102,13 +102,28 @@
 
 					<div class="well">
 						<div class="row-fluid" data-bind="if: !isEmpty()">
-							<div class="span10">
+							<div class="span8">
 								<h6>My Notes</h6>
 							</div>
-							<div class="span2">
-								<a class="btn btn-danger btn-mini" data-bind="{ click: deleteAllNotes }">
-									<i class="icon-remove"></i> Delete all
-								</a>
+							<div class="span4">
+								<div class="row-fluid">
+									<div class="span8">
+										<div class="btn-group pull-right">
+											<button class="btn btn-info btn-mini" disabled="disabled">
+												<i class="icon-upload"></i> Import
+											</button>
+											<button class="btn btn-info btn-mini" data-bind="click: notesToJson">
+												<i class="icon-download-alt"></i> Export
+											</button>
+										</div>
+									</div>
+									<div class="span4">
+										<a class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }">
+											<i class="icon-white icon-remove-sign"></i> Delete all
+										</a>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 
@@ -128,10 +143,15 @@
 								<table class="notes table table-striped">
 									<tbody data-bind="foreach: { data: notes, afterRender: postProcess }">
 										<tr>
-											<td class="note-actions">
-												<button class="btn btn-info" data-bind="click: $parent.toggleStar">
-													<i data-bind="css: { 'icon-heart': isStarred, 'icon-': !(isStarred()) }"></i>
-												</button>
+											<td class="note-like">
+												<div class="btn-group">
+													<button class="btn btn-mini" data-bind="click: $parent.toggleStar">
+														<i class="icon-heart" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
+													</button>
+													<button class="btn btn-mini" data-bind="click: $parent.toggleHeart">
+														<i class="icon-star" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
+													</button>
+												</div>
 											</td>
 											<td class="note-display">
 												<div class="row-fluid">
@@ -147,9 +167,14 @@
 											</td>
 											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
 											<td class="note-actions">
-												<button class="btn btn-warning btn-mini" data-bind="click: $parent.removeNote">
-													<i class="icon-remove"></i>
-												</button>
+												<div class="btn-group">
+													<button class="btn btn-mini" data-bind="click: $parent.editNote">
+														<i class="icon-edit"></i>
+													</button>
+													<button class="btn btn-mini" data-bind="click: $parent.removeNote">
+														<i class="icon-remove"></i>
+													</button>
+												</div>
 											</td>
 										</tr>
 									</tbody>
@@ -168,7 +193,7 @@
 				<div class="span4">
 					<a class="product-sprite html5" href="" title="HTML5"></a>
 				</div>
-				<div class="span4">
+				<div class="span4 created-by">
 					<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
 				</div>
 				<div class="span4">
@@ -189,9 +214,9 @@
 			<h3>Notebook</h3>
 			<h5>A simple note taking app.</h5>
 			<h6>Developed by <a href="http://rishabhsrao.github.com" title="Visit my website.">Rishabh Rao</a></h6>
-			
+
 			<hr />
-			
+
 			<div class="thanks">
 				<ol class="unstyled">
 					<li><a class="product-sprite jquery" href="http://jquery.com" title="jQuery - Write less. Do more."></a></li>
@@ -214,7 +239,25 @@
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-inverse" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
+			<button class="btn" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
+		</div>
+	</div>
+	
+	<div class="modal hide" id="importExportModal">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal"> <i class="icon-remove-sign"></i></button>
+			<h3>Export</h3>
+			<p>Use the JSON string below however your like.</p>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span12">
+					<textarea class="span12" data-bind="text: notesAsJson"></textarea>
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
 		</div>
 	</div>
 

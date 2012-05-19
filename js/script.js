@@ -53,7 +53,7 @@ $(document).ready(function() {
 	$('a, button, input, textarea, img').tooltip();
 	
 	// Remove hide class when everything is ready.
-	$("#pageContainer").fadeIn(1500);
+	$("#pageContainer").fadeIn(1000);
 
 	debug.groupEnd();
 });

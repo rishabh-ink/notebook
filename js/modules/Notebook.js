@@ -68,6 +68,19 @@ var Notebook = function() {
 	};
 	
 	/**
+	 * Edit the note.
+	 * @author Rishabh Rao
+	 * @since 1.0.0
+	 */
+	self.editNote = function(note) {
+		debug.info("Editing", note);
+		$("#noteTitle").val(note.title());
+		$("#noteContent").val(note.content());
+		
+		$("#createNewNoteDiv").collapse('show');
+	};
+	
+	/**
 	 * Performs post processing on the newly added note.
 	 * @author Rishabh Rao
 	 * @since 0.0.1

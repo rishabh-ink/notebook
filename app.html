@@ -80,7 +80,7 @@
 											</div>
 										</fieldset>
 										<fieldset>
-											<input type="submit" class="btn btn-success span12" data-bind="click: addNote" value="Create" />
+											<input type="submit" class="btn btn-success span12" data-bind="click: addNote" value="Save" />
 										</fieldset>
 									</form>
 								</div>
@@ -102,13 +102,28 @@
 
 					<div class="well">
 						<div class="row-fluid" data-bind="if: !isEmpty()">
-							<div class="span10">
+							<div class="span8">
 								<h6>My Notes</h6>
 							</div>
-							<div class="span2">
-								<a class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }">
-									<i class="icon-white icon-remove-sign"></i> Delete all
-								</a>
+							<div class="span4">
+								<div class="row-fluid">
+									<div class="span8">
+										<div class="btn-group pull-right">
+											<button class="btn btn-info btn-mini" disabled="disabled">
+												<i class="icon-upload"></i> Import
+											</button>
+											<button class="btn btn-info btn-mini" data-bind="click: notesToJson">
+												<i class="icon-download-alt"></i> Export
+											</button>
+										</div>
+									</div>
+									<div class="span4">
+										<a class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }">
+											<i class="icon-white icon-remove-sign"></i> Delete all
+										</a>
+									</div>
+								</div>
+								
 							</div>
 						</div>
 
@@ -199,9 +214,9 @@
 			<h3>Notebook</h3>
 			<h5>A simple note taking app.</h5>
 			<h6>Developed by <a href="http://rishabhsrao.github.com" title="Visit my website.">Rishabh Rao</a></h6>
-			
+
 			<hr />
-			
+
 			<div class="thanks">
 				<ol class="unstyled">
 					<li><a class="product-sprite jquery" href="http://jquery.com" title="jQuery - Write less. Do more."></a></li>
@@ -221,6 +236,24 @@
 					<li><a class="product-sprite colourlovers" href="http://www.colourlovers.com" title="COLOURlovers - COLOURlovers is a creative community where people from around the world create and share colors, palettes and patterns, discuss the latest trends and explore colorful articles... All in the spirit of love."></a></li>
 					<li><a class="product-sprite wegraphics" href="http://wegraphics.net/downloads/free-stained-and-faded-social-media-icons" title="WeGraphics - WeGraphics is a creative studio specialized into the creation of graphic design resources."></a></li>
 				</ol>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
+		</div>
+	</div>
+	
+	<div class="modal hide" id="importExportModal">
+		<div class="modal-header">
+			<button class="close" data-dismiss="modal"> <i class="icon-remove-sign"></i></button>
+			<h3>Export</h3>
+			<p>Use the JSON string below however your like.</p>
+		</div>
+		<div class="modal-body">
+			<div class="row-fluid">
+				<div class="span12">
+					<textarea class="span12" data-bind="text: notesAsJson"></textarea>
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">

@@ -15,6 +15,8 @@ var Notebook = function() {
 	self.notes = ko.observableArray();
 	self.isEmpty = ko.observable(true);
 	
+	self.notesAsJson = ko.observable("");
+	
 	/**
 	 * Intializes the <code>Notebook</code> object.
 	 * @author Rishabh Rao
@@ -76,7 +78,7 @@ var Notebook = function() {
 		debug.info("Editing", note, $(event.target).parent().parent().parent().parent());
 		
 		// FIXME Find a better way to select the parent tr.
-		$(event.target).parent().parent().parent().parent().hide(2000);
+		$(event.target).parent().parent().parent().hide();
 
 		$("#noteTitle").val(note.title());
 		$("#noteContent").val(note.content());
@@ -215,6 +217,20 @@ var Notebook = function() {
 	 */
 	self.toggleAboutModal = function() {
 		$("#aboutMe").modal("toggle");
+	};
+	
+	/**
+	 * Converts all notes to a JSON array.
+	 * @author Rishabh Rao
+	 * @since 1.0.1
+	 */
+	self.notesToJson = function() {
+		var rawJson = ko.toJSON(self.notes());
+		var parsedJson = JSON.parse(rawJson);
+		var formattedJson = JSON.stringify(parsedJson, undefined, 4);
+		self.notesAsJson(formattedJson);
+
+		$("#importExportModal").modal("toggle");
 	};
 
 	self.initialize();

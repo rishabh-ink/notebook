@@ -72,12 +72,20 @@ var Notebook = function() {
 	 * @author Rishabh Rao
 	 * @since 1.0.0
 	 */
-	self.editNote = function(note) {
-		debug.info("Editing", note);
+	self.editNote = function(note, event) {
+		debug.info("Editing", note, $(event.target).parent().parent().parent().parent());
+		
+		// FIXME Find a better way to select the parent tr.
+		$(event.target).parent().parent().parent().parent().hide(2000);
+
 		$("#noteTitle").val(note.title());
 		$("#noteContent").val(note.content());
-		
+
+		self.removeNote(note);
+
 		$("#createNewNoteDiv").collapse('show');
+		
+		$("#noteContent").focus();
 	};
 	
 	/**

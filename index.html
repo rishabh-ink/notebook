@@ -25,7 +25,7 @@
 
 <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 </head>
-<body id="pageContainer" class="hide">
+<body>
 	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 	<div class="navbar navbar-fixed-top">
@@ -49,12 +49,26 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="errorMessage" class="container">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert alert-error">
+						<button class="close" data-dismiss="alert">×</button>
+						<strong>Oh snap!</strong> <span id="errorMessageTitle">You don't have JavaScript enabled on your browser.</span>
+						<p id="errorMessageContent">I need JavaScript to proceed! Could you please enable it for me? Once you enable it, just refresh this page and we're good to go!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-	<div class="container">
+	<div class="container hide" id="pageContainer">
 		<div class="container-fluid">
 			<!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit">
-				<h1>Notebook</h1>
+				<h2>Notebook</h2>
 				<p>An app to scribble your notes.</p>
 				<h6>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></h6>
 				<hr />
@@ -70,7 +84,7 @@
 						<img src="img/features-html5-localstorage.png" alt="HTML5 local storage logo" title="Leverages your browser's local storage" width="202" height="202">
 						<hr />
 						<h4>HTML5 local storage</h4>
-						<p>Your notes are always saved to your browsers storage.</p>
+						<p>Your notes are safe in browser's local storage.</p>
 						<h6>Not available in IE 7 and below.</h6>
 					</div>
 				</div>
@@ -170,6 +184,7 @@
 	<script src="js/libs/bootstrap/tooltip.js"></script>
 	<script src="js/libs/bootstrap/collapse.js"></script>
 	<script src="js/libs/bootstrap/modal.js"></script>
+	<script src="js/libs/bootstrap/alert.js"></script>
 	<script src="js/mylibs/knockout-2.1.0.debug.js"></script>
 	<script src="js/mylibs/ba-debug.js"></script>
 	<script src="js/mylibs/jquery.timeago.js"></script>

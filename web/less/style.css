@@ -8245,4 +8245,8 @@ div.welcome-text {
   .row-fluid [class*="span"] {
     width: 100%;
   }
+  /* Fix visible desktop problem */
+  .visible-desktop {
+    display: hidden !important;
+  }
 }

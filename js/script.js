@@ -3,7 +3,7 @@
 */
 
 $(document).ready(function() {
-	$("#noJavascriptError").addClass("hide");
+	$("#errorMessage").addClass("hide");
 	
 	// Attach the error handler.
 	$(window).error(function(error, fileName, lineNumber) {

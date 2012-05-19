@@ -23,8 +23,15 @@ var Notebook = function() {
 	 * @since 0.0.1
 	 */
 	self.initialize = function() {
-		self.loadNotes();
+		if(Modernizr.localstorage) {
+			
+		} else {
+			$("#errorMessageTitle").html("Looks like your browser doesn't support local storage.");
+			$("#errorMessageContent").html("Too bad - your notes can't be saved. Before you leave, use the <button class='btn btn-info btn-mini' disabled='disabled'><i class='icon-download-alt'></i> Export</button> button to save your data elsewhere. <a href='http://browsehappy.com/'>Upgrade to a different browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true'>install Google Chrome Frame</a> to experience this site.");
+		}
 		
+		self.loadNotes();
+
 		self.updateIsEmpty();
 		
 		debug.info("Successfully created notebook!", self);
@@ -49,13 +56,18 @@ var Notebook = function() {
 			self.notes.push(note);
 			self.notes(self.notes().reverse());
 			
-			// Clear the input fields.
-			$("#noteTitle").val("");
-			$("#noteContent").val("");
+			
+			var saveStatus = self.saveNotes();
+			
+			// Only if the save was successful, then clear the fields, else don't.
+			if(saveStatus) {
+				// Clear the input fields.
+				$("#noteTitle").val("");
+				$("#noteContent").val("");
+			}
+
+			self.updateIsEmpty();
 		}
-		
-		self.saveNotes();
-		self.updateIsEmpty();
 	};
 	
 	/**
@@ -167,11 +179,19 @@ var Notebook = function() {
 	 */
 	self.saveNotes = function() {
 		if(Modernizr.localstorage) {
-			localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
-			debug.info("Saved to localstorage.");
-		} else {
-			debug.warn("No localstorage capability found.");
+			try {
+				localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
+				debug.info("Saved to localstorage.");
+				return true;
+			} catch(e) {
+				if(e == QUOTA_EXCEEDED_ERR) {
+					$("#errorMessageTitle").html("We're out of memory!");
+					$("#errorMessageContent").html("Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need.");
+				}
+			}
 		}
+
+		return false;
 	};
 	
 	/**

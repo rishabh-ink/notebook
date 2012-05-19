@@ -37,14 +37,11 @@
 				<a class="brand" href="index.html">Notebook</a>
 				<div class="nav-collapse">
 					<ul class="nav">
-						<li>
+						<li class="active">
 							<a href="index.html">Home</a>
 						</li>
-						<li class="active">
-							<a href="app.html">Application</a>
-						</li>
 						<li>
-							<a href="" data-bind="click: toggleAboutModal">About</a>
+							<a href="app.html">Application</a>
 						</li>
 					</ul>
 				</div>
@@ -55,120 +52,60 @@
 
 	<div class="container">
 		<div class="container-fluid">
+			<!-- Main hero unit for a primary marketing message or call to action -->
+			<div class="hero-unit">
+				<h1>Notebook</h1>
+				<p>An app to scribble your notes.</p>
+				<h6>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></h6>
+				<hr />
+				<p>
+					<a href="publish/app.html" class="btn btn-success btn-large" title="Get started with Notebook now!"><i class="icon-ok"></i> Launch Application &raquo;</a> <small><i class="icon-user"></i> No signup required.</small>
+				</p>
+			</div>
+
+			<!-- Example row of columns -->
 			<div class="row-fluid">
-				<div class="span3">
-					<div id="createNewNoteAccordion" class="accordion">
-						<div class="accordion-group">
-							<div class="accordion-heading">
-								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle">Create New Note</a>
-							</div>
-							<div class="accordion-body collapse" id="createNewNoteDiv" style="height: 0px;">
-								<div class="accordion-inner">
-									<form id="createNewNoteForm" action="" method="POST">
-										<fieldset>
-											<div class="control-group noteTitle-control-group">
-												<label class="control-label" for="noteTitle">Title</label>
-												<div class="controls">
-													<input name="noteTitle" type="text" class="span12" id="noteTitle" title="What would you like to call your note?" maxlength="256" />
-												</div>
-											</div>
-											<div class="control-group noteContent-control-group">
-												<label class="control-label" for="noteContent">Content<span class="mandatory-star">*</span></label>
-												<div class="controls">
-													<textarea name="noteContent" class="span12" id="noteContent" title="What would you like your note to contain? This ones required." maxlength="1024"></textarea>
-												</div>
-											</div>
-										</fieldset>
-										<fieldset>
-											<input type="submit" class="btn btn-success span12" data-bind="click: addNote" value="Add note" />
-										</fieldset>
-									</form>
-								</div>
-							</div>
-						</div>
+				<div class="span4">
+					<div class="thumbnail">
+						<img src="img/features-html5-localstorage.png" alt="HTML5 local storage logo" title="Leverages your browser's local storage" width="202" height="202">
+						<hr />
+						<h4>HTML5 local storage</h4>
+						<p>Your notes are always saved to your browsers storage.</p>
+						<h6>Not available in IE 7 and below.</h6>
+					</div>
+				</div>
+				
+				<div class="span4">
+					<div class="thumbnail">
+						<img src="img/features-cross-everything.jpg" alt="Various devices" title="Works on all browsers (even IE) on all devices." width="335" height="202">
+						<hr />
+						<h4>Cross-everything</h4>
+						<p>Use Notebook on your desktop, tablet or phone.</p>
+						<h6>Gracefully degrades on older browsers.</h6>
 					</div>
 				</div>
 
-				<div class="span9">
-					<div id="noJavascriptError" class="alert alert-error">
-						<button class="close" data-dismiss="alert">×</button>
-						<strong>Oh snap!</strong> You don't have JavaScript enabled on your browser.
-						<p>I need JavaScript to proceed! Could you please enable it for me? Once you enable it, just refresh this page and we're good to go!</p>
+				<div class="span4">
+					<div class="thumbnail">
+						<img src="img/features-intl.png" alt="World" title="There's internationalization support too." width="202" height="202">
+						<hr />
+						<h4>Speak a different language?</h4>
+						<p>No problem, we've got you covered.</p>
+						<h6>Not implemented yet.</h6>
 					</div>
-
-					<div class="hide">
-						<strong>Oh snap!</strong> You don't have CSS enabled on your browser. I need CSS to proceed! Could you please enable it for me?
-					</div>
-
-					<div class="well">
-						<div class="row-fluid" data-bind="if: !isEmpty()">
-							<div class="span10">
-								<h6>My Notes</h6>
-							</div>
-							<div class="span2">
-								<a class="btn btn-danger btn-mini" data-bind="{ click: deleteAllNotes }">
-									<i class="icon-remove"></i> Delete all
-								</a>
-							</div>
-						</div>
-
-						<div class="row-fluid">
-							<div class="span12">
-								<div class="welcome-text" data-bind="if: isEmpty">
-									<h4>Hey, welcome to Notebook!</h4>
-									<h5>A simple note taking app.</h5>
-									
-									<hr />
-									
-									<p>You currently don't have any notes. Let's start by creating a new one!</p>
-									<button class="btn btn-large btn-info" data-bind="click: focusCreateNote">
-										<i class="icon-star"></i> Create new note!
-									</button>
-								</div>
-								<table class="notes table table-striped">
-									<tbody data-bind="foreach: { data: notes, afterRender: postProcess }">
-										<tr>
-											<td class="note-actions">
-												<button class="btn btn-info" data-bind="click: $parent.toggleStar">
-													<i data-bind="css: { 'icon-heart': isStarred, 'icon-': !(isStarred()) }"></i>
-												</button>
-											</td>
-											<td class="note-display">
-												<div class="row-fluid">
-													<div class="span12">
-														<h4><span class="title" data-bind="text: title"></span></h4>
-													</div>
-												</div>
-												<div class="row-fluid">
-													<div class="span12">
-														<span class="content" data-bind="text: content"></span>
-													</div>
-												</div>
-											</td>
-											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
-											<td class="note-actions">
-												<button class="btn btn-warning btn-mini" data-bind="click: $parent.removeNote">
-													<i class="icon-remove"></i>
-												</button>
-											</td>
-										</tr>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
+					
 				</div>
 			</div>
 		</div>
 
-		<hr>
+		<hr />
 
 		<footer>
 			<div class="row-fluid thanks">
 				<div class="span4">
 					<a class="product-sprite html5" href="" title="HTML5"></a>
 				</div>
-				<div class="span4">
+				<div class="span4 created-by">
 					<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
 				</div>
 				<div class="span4">
@@ -233,19 +170,12 @@
 	<script src="js/libs/bootstrap/tooltip.js"></script>
 	<script src="js/libs/bootstrap/collapse.js"></script>
 	<script src="js/libs/bootstrap/modal.js"></script>
-	<script src="js/mylibs/knockout-2.1.0.debug.js"></script>
-	<script src="js/mylibs/ba-debug.js"></script>
-	<script src="js/mylibs/jquery.timeago.js"></script>
-	<script src="js/mylibs/jquery.validate.js"></script>
 
-	<script src="js/mylibs/json2.js"></script>
-	
-	<script src="js/modules/Note.js"></script>
-	<script src="js/modules/Notebook.js"></script>
-
-	<script src="js/script.js"></script>
+	<script>
+		$('a, button, input, textarea, img').tooltip();
+		$("#pageContainer").fadeIn(1500);
+	</script>
 	<!-- end scripts-->
-
 	<script>
 		var _gaq = [ [ '_setAccount', 'UA-31892617-1' ], [ '_trackPageview' ] ];
 		(function(d, t) {

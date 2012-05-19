@@ -50,9 +50,7 @@ $(document).ready(function() {
 	});
 
 	// Intialize tooltip.
-	$('a, button, input, textarea, img').tooltip({
-		animation: true
-	});
+	$('a, button, input, textarea, img').tooltip();
 	
 	// Remove hide class when everything is ready.
 	$("#pageContainer").fadeIn(1500);

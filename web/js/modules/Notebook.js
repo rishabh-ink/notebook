@@ -7,7 +7,7 @@
  * @author Rishabh Rao
  * @since 0.0.1
  */
-var Notebook = function(storeManager) {
+var Notebook = function() {
 	var self = this;
 	
 	self.STORE_KEY = "NOTEBOOK_STORE";
@@ -107,9 +107,7 @@ var Notebook = function(storeManager) {
 	 * @since 0.0.1
 	 */
 	self.loadNotes = function() {
-		debug.info("Attempting to load from localstorage...");
 		if(Modernizr.localstorage) {
-			debug.log("Checking for previously stored data...");
 			var notebookData = localStorage.getItem(self.STORE_KEY);
 			
 			if(notebookData) {
@@ -128,6 +126,8 @@ var Notebook = function(storeManager) {
 					
 					self.notes.push(note);
 				});
+				
+				debug.info("Restored from localstorage.");
 			} else {
 				debug.warn("No previously stored data found.");
 			}
@@ -143,9 +143,9 @@ var Notebook = function(storeManager) {
 	 * @since 0.0.1
 	 */
 	self.saveNotes = function() {
-		debug.info("Attempting to save to localstorage...");
 		if(Modernizr.localstorage) {
 			localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
+			debug.info("Saved to localstorage.");
 		} else {
 			debug.warn("No localstorage capability found.");
 		}

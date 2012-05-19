@@ -8136,6 +8136,9 @@ textarea {
 div.welcome-text {
   text-align: center;
 }
+.notes .content {
+  font-size: 1.1em;
+}
 .notes .note-actions {
   width: 1%;
 }

@@ -199,6 +199,16 @@ var Notebook = function() {
 	};
 	
 	/**
+	 * Handles clicking of the heart/star button.
+	 * @author Rishabh Rao
+	 * @since 1.0.1
+	 */
+	self.toggleHeart = function(element) {
+		element.toggleHeart();
+		self.saveNotes();
+	};
+	
+	/**
 	 * Hides/shows About Me box.
 	 * @author Rishabh Rao
 	 * @since 0.0.1

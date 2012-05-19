@@ -65,6 +65,15 @@ var Note = function(title, content) {
 	};
 	
 	/**
+	 * Toggles heart.
+	 * @author Rishabh Rao
+	 * @since 1.0.1
+	 */
+	self.toggleHeart = function() {
+		self.isFavourited(!self.isFavourited());
+	};
+	
+	/**
 	 * Fixes the missing Date.toISOString in browsers which don't have this function.
 	 * @author Robert S. Robbins (williamsportwebdeveloper.com/cgi/wp/?p=503)
 	 */

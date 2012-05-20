@@ -46,14 +46,38 @@
 				<a class="brand" href="index.html">Notebook</a>
 				<div class="nav-collapse">
 					<ul class="nav">
+						<li class="divider-vertical"></li>
 						<li>
-							<a href="index.html">Home</a>
+							<a href="index.html"><i class="icon-white icon-home"></i> Home</a>
 						</li>
 						<li class="active">
-							<a href="app.html">Application</a>
+							<a href="app.html"><i class="icon-white icon-cog"></i> Application</a>
 						</li>
 						<li>
-							<a href="" data-bind="click: toggleAboutModal">About</a>
+							<a href="" data-bind="click: toggleAboutModal"><i class="icon-white icon-info-sign"></i> About</a>
+						</li>
+					</ul>
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-white icon-share-alt"></i> Share <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="http://bit.ly/notebookapp"><i class="icon-globe"></i> bit.ly/notebookapp</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a>
+										<i class="icon-qrcode"></i>
+										<img src="img/qrcode.png" alt="QR code" />
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="divider-vertical"></li>
+						<li>
+							<a href="https://github.com/rishabhsrao/notebook"><i class="icon-white icon-random"></i> Fork me on Github</a>
 						</li>
 					</ul>
 				</div>
@@ -70,7 +94,7 @@
 						<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
 						<p>You need to enable JavaScript in your browser to experience this application.</p>
 
-						<a href="http://www.enable-javascript.com/" target="_blank" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
+						<a href="http://www.enable-javascript.com/" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
 							<i class="icon-white icon-info-sign"></i> Get help
 						</a>
 					</div>
@@ -95,10 +119,10 @@
 							</div>
 							<div class="span9">
 								<div class="btn-group">
-									<a href="http://browsehappy.com" target="_blank" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy!">
+									<a href="http://browsehappy.com" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy!">
 										<i class="icon-white icon-certificate"></i> Upgrade browser
 									</a>
-									<a href="http://www.google.com/chromeframe/?redirect=true" target="_blank" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame. It's the next best thing!">
+									<a href="http://www.google.com/chromeframe/?redirect=true" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame. It's the next best thing!">
 										<i class="icon-white icon-fullscreen"></i> Install Chrome Frame
 									</a>
 								</div>
@@ -135,7 +159,7 @@
 					<div id="createNewNoteAccordion" class="accordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle">Create new note</a>
+								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-star"></i> Create new note</a>
 							</div>
 							<div class="accordion-body collapse" id="createNewNoteDiv" style="height: 0px;">
 								<div class="accordion-inner">
@@ -202,7 +226,7 @@
 									
 									<p>You currently don't have any notes. Let's start by creating a new one!</p>
 									<button class="btn btn-large btn-info" data-bind="click: focusCreateNote">
-										<i class="icon-star"></i> Create new note!
+										<i class="icon-white icon-star"></i> Create new note!
 									</button>
 								</div>
 								<table class="notes table table-striped">

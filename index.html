@@ -13,6 +13,8 @@
 <meta name="description" content="A Note taking application.">
 <meta name="author" content="Rishabh Rao">
 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 <!--
@@ -43,6 +45,9 @@
 						<li>
 							<a href="app.html">Application</a>
 						</li>
+						<li>
+							<a href="" data-bind="click: toggleAboutModal">About</a>
+						</li>
 					</ul>
 				</div>
 				<!--/.nav-collapse -->
@@ -50,14 +55,66 @@
 		</div>
 	</div>
 	
-	<div id="errorMessage" class="container">
+	<div id="errorMessagesNoJavascript" class="container">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
 					<div class="alert alert-error">
-						<button class="close" data-dismiss="alert">×</button>
-						<strong>Oh snap!</strong> <span id="errorMessageTitle">You don't have JavaScript enabled on your browser.</span>
-						<p id="errorMessageContent">I need JavaScript to proceed! Could you please enable it for me? Once you enable it, just refresh this page and we're good to go!</p>
+						<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
+						<p>You need to enable JavaScript in your browser to experience this application.</p>
+
+						<a href="http://www.enable-javascript.com/" target="_blank" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
+							<i class="icon-white icon-info-sign"></i> Get help
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="errorMessagesNoLocalStorage" class="container hide">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert">
+						<h4 class="alert-heading">Heads up! Looks like your browser doesn't support local storage.</h4>
+						<p>Too bad - your notes can't be saved for future use. Try exporting your notes.</p>
+
+						<div class="row-fluid">
+							<div class="span3">
+								<button class="btn btn-info" data-bind="click: notesToJson" title="Lets you export all your notes in JSON format.">
+									<i class="icon-white icon-download-alt"></i> Export all notes
+								</button>
+							</div>
+							<div class="span9">
+								<div class="btn-group">
+									<a href="http://browsehappy.com" target="_blank" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy!">
+										<i class="icon-white icon-certificate"></i> Upgrade browser
+									</a>
+									<a href="http://www.google.com/chromeframe/?redirect=true" target="_blank" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame. It's the next best thing!">
+										<i class="icon-white icon-fullscreen"></i> Install Chrome Frame
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="errorMessagesLocalStorageFull" class="container hide">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert alert-error">
+						<h4 class="alert-heading">Holy guacamole! We're out of memory!</h4>
+						<p>Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need.</p>
+
+						<button class="btn btn-danger" data-bind="{ click: deleteAllNotes }" title="Permanently deletes all your notes. WARNING: You will lose all your data. Use with caution.">
+							<i class="icon-white icon-remove-sign"></i> Delete all notes
+						</button>
+
 					</div>
 				</div>
 			</div>
@@ -68,24 +125,38 @@
 		<div class="container-fluid">
 			<!-- Main hero unit for a primary marketing message or call to action -->
 			<div class="hero-unit">
-				<h2>Notebook</h2>
-				<p>An app to scribble your notes.</p>
-				<h6>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></h6>
-				<hr />
-				<p>
-					<a href="app.html" class="btn btn-success btn-large" title="Get started with Notebook now!"><i class="icon-ok"></i> Launch Application &raquo;</a> <small><i class="icon-user"></i> No signup required.</small>
-				</p>
+				<div class="row-fluid">
+					<div class="span2">
+						<img src="img/logo.png" alt="Spiral-bound yellow notebook" />
+					</div>
+					<div class="span10">
+						<h2>Notebook</h2>
+						<p>An app to scribble your notes.</p>
+						<h6>
+							Created by
+							<a href="http://rishabhsrao.github.com">Rishabh Rao</a>
+						</h6>
+						<hr />
+						<p>
+							<a href="app.html" class="btn btn-success btn-large" title="Get started with Notebook now!">
+								<i class="icon-ok"></i> Launch Application &raquo;
+							</a>
+							<small><i class="icon-user"></i> No signup required.</small>
+						</p>
+					</div>
+				</div>
+				
 			</div>
 
 			<!-- Example row of columns -->
 			<div class="row-fluid">
 				<div class="span4">
 					<div class="thumbnail">
-						<img src="img/features-html5-localstorage.png" alt="HTML5 local storage logo" title="Leverages your browser's local storage" width="202" height="202">
+						<img src="img/features-html5-localstorage.png" alt="HTML5 local storage logo" title="Notes are automatically saved in the browser." width="202" height="202">
 						<hr />
-						<h4>HTML5 local storage</h4>
-						<p>Your notes are safe in browser's local storage.</p>
-						<h6>Not available in IE 7 and below.</h6>
+						<h4>Auto-save your notes</h4>
+						<p>Your notes are saved automatically - so they're there when you get back.</p>
+						<h6>Available in most modern web browsers.</h6>
 					</div>
 				</div>
 				
@@ -94,18 +165,18 @@
 						<img src="img/features-cross-everything.jpg" alt="Various devices" title="Works on all browsers (even IE) on all devices." width="335" height="202">
 						<hr />
 						<h4>Cross-everything</h4>
-						<p>Use Notebook on your desktop, tablet or phone.</p>
+						<p>Use Notebook on your desktop, tablet or phone. Notebook works almost everywhere.</p>
 						<h6>Gracefully degrades on older browsers.</h6>
 					</div>
 				</div>
 
 				<div class="span4">
 					<div class="thumbnail">
-						<img src="img/features-intl.png" alt="World" title="There's internationalization support too." width="202" height="202">
+						<img src="img/features-export.png" alt="Shopping bag" title="Export your notes in the JSON format." width="202" height="202">
 						<hr />
-						<h4>Speak a different language?</h4>
-						<p>No problem, we've got you covered.</p>
-						<h6>Not implemented yet.</h6>
+						<h4>Moving out?</h4>
+						<p>No problem, simply export your notes and you're good to go.</p>
+						<h6>Currently JSON format is supported.</h6>
 					</div>
 					
 				</div>
@@ -137,35 +208,47 @@
 			<h3>About</h3>
 		</div>
 		<div class="modal-body">
-			<h3>Notebook</h3>
-			<h5>A simple note taking app.</h5>
-			<h6>Developed by <a href="http://rishabhsrao.github.com" title="Visit my website.">Rishabh Rao</a></h6>
-			
-			<hr />
-			
-			<div class="thanks">
-				<ol class="unstyled">
-					<li><a class="product-sprite jquery" href="http://jquery.com" title="jQuery - Write less. Do more."></a></li>
-					<li><a class="product-sprite initializr" href="http://www.initializr.com" title="Initializr - Start an HTML5 project in 15 seconds!"></a></li>
-					<li><a class="product-sprite h5bp" href="http://html5boilerplate.com" title="HTML5 Boilerplate - A rock-solid default for HTML5 awesome."></a></li>
-					<li><a class="product-sprite bootstrap" href="http://twitter.github.com/bootstrap" title="Twitter Bootstrap - Simple and flexible HTML, CSS, and Javascript for popular user interface components and interactions."></a></li>
-					<li><a class="product-sprite knockoutjs" href="http://knockoutjs.com" title="Knockout.js - Knockout is a JavaScript library that makes it easier to create rich, desktop-like user interfaces with JavaScript and HTML, using observers to make your UI automatically stay in sync with an underlying data model."></a></li>
-					<li><a class="product-sprite opensuse" href="http://opensuse.org" title="openSUSE"></a></li>
-					<li><a class="product-sprite firefox" href="http://mozilla.org/firefox" title="Firefox"></a></li>
-					<li><a class="product-sprite eclipse" href="http://eclipse.org" title="Eclipse IDE"></a></li>
-					<li><a class="product-sprite github" href="http://github.com" title="Github - Social coding."></a></li>
-					<li><a class="product-sprite git" href="http://git-scm.com" title="Git - SCM."></a></li>
-					<li><a class="product-sprite webfonts" href="www.google.com/webfonts/specimen/Exo" title="Google web fonts - Exo by Natanael Gama."></a></li>
-					<li><a class="product-sprite rloader" href="http://code.google.com/p/rloader" title="RLoader - A jQuery plugin which can load JS and CSS resources on-the-fly."></a></li>
-					<li><a class="product-sprite badebug" href="http://benalman.com/projects/javascript-debug-console-log" title="Debug - JavaScript Debug: A simple wrapper for console.log()"></a></li>
-					<li><a class="product-sprite lessjs" href="http://lesscss.org" title="{less} - The dynamic stylesheet language."></a></li>
-					<li><a class="product-sprite colourlovers" href="http://www.colourlovers.com" title="COLOURlovers - COLOURlovers is a creative community where people from around the world create and share colors, palettes and patterns, discuss the latest trends and explore colorful articles... All in the spirit of love."></a></li>
-					<li><a class="product-sprite wegraphics" href="http://wegraphics.net/downloads/free-stained-and-faded-social-media-icons" title="WeGraphics - WeGraphics is a creative studio specialized into the creation of graphic design resources."></a></li>
-				</ol>
+			<div class="hero-unit">
+				<div class="row-fluid">
+					<div class="span2">
+						<img src="img/logo.png" alt="Spiral-bound yellow notebook" />
+					</div>
+					<div class="span10">
+						<h2>Notebook</h2>
+						<p>An app to scribble your notes.</p>
+						<h6>
+							Created by
+							<a href="http://rishabhsrao.github.com">Rishabh Rao</a>
+						</h6>
+						<hr />
+						<div class="thanks">
+						<p>Many thanks to...</p>
+
+						<ol class="unstyled">
+							<li><a class="product-sprite jquery" href="http://jquery.com" title="jQuery - Write less. Do more."></a></li>
+							<li><a class="product-sprite initializr" href="http://www.initializr.com" title="Initializr - Start an HTML5 project in 15 seconds!"></a></li>
+							<li><a class="product-sprite h5bp" href="http://html5boilerplate.com" title="HTML5 Boilerplate - A rock-solid default for HTML5 awesome."></a></li>
+							<li><a class="product-sprite bootstrap" href="http://twitter.github.com/bootstrap" title="Twitter Bootstrap - Simple and flexible HTML, CSS, and Javascript for popular user interface components and interactions."></a></li>
+							<li><a class="product-sprite knockoutjs" href="http://knockoutjs.com" title="Knockout.js - Knockout is a JavaScript library that makes it easier to create rich, desktop-like user interfaces with JavaScript and HTML, using observers to make your UI automatically stay in sync with an underlying data model."></a></li>
+							<li><a class="product-sprite opensuse" href="http://opensuse.org" title="openSUSE"></a></li>
+							<li><a class="product-sprite firefox" href="http://mozilla.org/firefox" title="Firefox"></a></li>
+							<li><a class="product-sprite eclipse" href="http://eclipse.org" title="Eclipse IDE"></a></li>
+							<li><a class="product-sprite github" href="http://github.com" title="Github - Social coding."></a></li>
+							<li><a class="product-sprite git" href="http://git-scm.com" title="Git - SCM."></a></li>
+							<li><a class="product-sprite webfonts" href="www.google.com/webfonts/specimen/Exo" title="Google web fonts - Exo by Natanael Gama."></a></li>
+							<li><a class="product-sprite rloader" href="http://code.google.com/p/rloader" title="RLoader - A jQuery plugin which can load JS and CSS resources on-the-fly."></a></li>
+							<li><a class="product-sprite badebug" href="http://benalman.com/projects/javascript-debug-console-log" title="Debug - JavaScript Debug: A simple wrapper for console.log()"></a></li>
+							<li><a class="product-sprite lessjs" href="http://lesscss.org" title="{less} - The dynamic stylesheet language."></a></li>
+							<li><a class="product-sprite colourlovers" href="http://www.colourlovers.com" title="COLOURlovers - COLOURlovers is a creative community where people from around the world create and share colors, palettes and patterns, discuss the latest trends and explore colorful articles... All in the spirit of love."></a></li>
+							<li><a class="product-sprite wegraphics" href="http://wegraphics.net/downloads/free-stained-and-faded-social-media-icons" title="WeGraphics - WeGraphics is a creative studio specialized into the creation of graphic design resources."></a></li>
+						</ol>
+					</div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="modal-footer">
-			<button class="btn btn-inverse" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
+			<button class="btn" data-dismiss="modal"><i class="icon icon-remove-sign"></i> Close</button>
 		</div>
 	</div>
 
@@ -184,7 +267,6 @@
 	<script src="js/libs/bootstrap/tooltip.js"></script>
 	<script src="js/libs/bootstrap/collapse.js"></script>
 	<script src="js/libs/bootstrap/modal.js"></script>
-	<script src="js/libs/bootstrap/alert.js"></script>
 	<script src="js/mylibs/knockout-2.1.0.debug.js"></script>
 	<script src="js/mylibs/ba-debug.js"></script>
 	<script src="js/mylibs/jquery.timeago.js"></script>

@@ -21,11 +21,11 @@
 	<script src="js/libs/less-1.3.0.min.js"></script>
 	-->
 
-<link rel="stylesheet" href='less/5528190.css'>
+<link rel="stylesheet" href='less/411f4da.css'>
 
 <script src="js/libs/modernizr-2.5.3-respond-1.1.0.min.js"></script>
 </head>
-<body id="pageContainer" class="hide">
+<body>
 	<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 
 	<div class="navbar navbar-fixed-top">
@@ -52,8 +52,74 @@
 			</div>
 		</div>
 	</div>
+	
+	<div id="errorMessagesNoJavascript" class="container">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert alert-error">
+						<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
+						<p>You need to enable JavaScript in your browser to experience this application.</p>
 
-	<div class="container">
+						<a href="http://www.enable-javascript.com/" target="_blank" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
+							<i class="icon-white icon-info-sign"></i> Get help
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="errorMessagesNoLocalStorage" class="container hide">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert">
+						<h4 class="alert-heading">Heads up! Looks like your browser doesn't support local storage.</h4>
+						<p>Too bad - your notes can't be saved for future use. Try exporting your notes.</p>
+
+						<div class="row-fluid">
+							<div class="span3">
+								<button class="btn btn-info" data-bind="click: notesToJson" title="Lets you export all your notes in JSON format.">
+									<i class="icon-white icon-download-alt"></i> Export all notes
+								</button>
+							</div>
+							<div class="span9">
+								<div class="btn-group">
+									<a href="http://browsehappy.com" target="_blank" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy!">
+										<i class="icon-white icon-certificate"></i> Upgrade browser
+									</a>
+									<a href="http://www.google.com/chromeframe/?redirect=true" target="_blank" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame. It's the next best thing!">
+										<i class="icon-white icon-fullscreen"></i> Install Chrome Frame
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="errorMessagesLocalStorageFull" class="container hide">
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<div class="span12">
+					<div class="alert alert-error">
+						<h4 class="alert-heading">Holy guacamole! We're out of memory!</h4>
+						<p>Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need.</p>
+
+						<button class="btn btn-danger" data-bind="{ click: deleteAllNotes }" title="Permanently deletes all your notes. WARNING: You will lose all your data. Use with caution.">
+							<i class="icon-white icon-remove-sign"></i> Delete all notes
+						</button>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="container hide" id="pageContainer">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span3">
@@ -90,37 +156,27 @@
 				</div>
 
 				<div class="span9">
-					<div id="noJavascriptError" class="alert alert-error">
-						<button class="close" data-dismiss="alert">×</button>
-						<strong>Oh snap!</strong> You don't have JavaScript enabled on your browser.
-						<p>I need JavaScript to proceed! Could you please enable it for me? Once you enable it, just refresh this page and we're good to go!</p>
-					</div>
-
-					<div class="hide">
-						<strong>Oh snap!</strong> You don't have CSS enabled on your browser. I need CSS to proceed! Could you please enable it for me?
-					</div>
-
 					<div class="well">
 						<div class="row-fluid" data-bind="if: !isEmpty()">
 							<div class="span8">
-								<h6>My Notes</h6>
+								<h6>My Notes (<span data-bind="text: notes().length"></span>)</h6>
 							</div>
 							<div class="span4">
 								<div class="row-fluid">
 									<div class="span8">
 										<div class="btn-group pull-right">
 											<button class="btn btn-info btn-mini" disabled="disabled">
-												<i class="icon-upload"></i> Import
+												<i class="icon-white icon-upload"></i> Import
 											</button>
 											<button class="btn btn-info btn-mini" data-bind="click: notesToJson">
-												<i class="icon-download-alt"></i> Export
+												<i class="icon-white icon-download-alt"></i> Export
 											</button>
 										</div>
 									</div>
 									<div class="span4">
-										<a class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }">
+										<button class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }">
 											<i class="icon-white icon-remove-sign"></i> Delete all
-										</a>
+										</button>
 									</div>
 								</div>
 								
@@ -144,13 +200,17 @@
 									<tbody data-bind="foreach: { data: notes, afterRender: postProcess }">
 										<tr>
 											<td class="note-like">
-												<div class="btn-group">
-													<button class="btn btn-mini" data-bind="click: $parent.toggleStar">
-														<i class="icon-heart" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
-													</button>
-													<button class="btn btn-mini" data-bind="click: $parent.toggleHeart">
-														<i class="icon-star" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
-													</button>
+												<div class="row-fluid">
+													<div class="span6">
+														<button class="btn btn-mini" data-bind="click: $parent.toggleStar">
+															<i class="icon-heart" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
+														</button>
+													</div>
+													<div class="span6">
+														<button class="btn btn-mini" data-bind="click: $parent.toggleHeart">
+															<i class="icon-star" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
+														</button>
+													</div>
 												</div>
 											</td>
 											<td class="note-display">
@@ -167,13 +227,17 @@
 											</td>
 											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
 											<td class="note-actions">
-												<div class="btn-group">
-													<button class="btn btn-mini" data-bind="click: $parent.editNote">
-														<i class="icon-edit"></i>
-													</button>
-													<button class="btn btn-mini" data-bind="click: $parent.removeNote">
-														<i class="icon-remove"></i>
-													</button>
+												<div class="row-fluid">
+													<div class="span6">
+														<button class="btn btn-mini" data-bind="click: $parent.editNote">
+															<i class="icon-edit"></i>
+														</button>
+													</div>
+													<div class="span6">
+														<button class="btn btn-mini" data-bind="click: $parent.removeNote">
+															<i class="icon-remove"></i>
+														</button>
+													</div>
 												</div>
 											</td>
 										</tr>
@@ -252,7 +316,7 @@
 		<div class="modal-body">
 			<div class="row-fluid">
 				<div class="span12">
-					<textarea class="span12" data-bind="text: notesAsJson"></textarea>
+					<textarea class="span12" data-bind="text: notesAsJson" rows="6"></textarea>
 				</div>
 			</div>
 		</div>
@@ -270,7 +334,7 @@
 		//
 	</script>
 
-	<script defer src='js/6560ed6.js'></script>
+	<script defer src='js/1c20ae1.js'></script>
 
 	<script>
 		var _gaq = [ [ '_setAccount', 'UA-31892617-1' ], [ '_trackPageview' ] ];

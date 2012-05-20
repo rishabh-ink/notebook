@@ -26,8 +26,7 @@ var Notebook = function() {
 		if(Modernizr.localstorage) {
 			
 		} else {
-			$("#errorMessageTitle").html("Looks like your browser doesn't support local storage.");
-			$("#errorMessageContent").html("Too bad - your notes can't be saved. Before you leave, use the <button class='btn btn-info btn-mini' disabled='disabled'><i class='icon-download-alt'></i> Export</button> button to save your data elsewhere. <a href='http://browsehappy.com/'>Upgrade to a different browser</a> or <a href='http://www.google.com/chromeframe/?redirect=true'>install Google Chrome Frame</a> to experience this site.");
+			$("#errorMessagesNoLocalStorage").show();
 		}
 		
 		self.loadNotes();
@@ -111,6 +110,8 @@ var Notebook = function() {
 		// FIXME This method is being called 3 times.
 		// Initialize jQuery timeago.
 		$("time.timeago").timeago();
+		
+		// TODO Use http://shakenandstirredweb.com/240/jquery-moreless-text
 	};
 	
 	/**
@@ -182,11 +183,11 @@ var Notebook = function() {
 			try {
 				localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
 				debug.info("Saved to localstorage.");
+				$("#errorMessagesLocalStorageFull").hide();
 				return true;
 			} catch(e) {
 				if(e == QUOTA_EXCEEDED_ERR) {
-					$("#errorMessageTitle").html("We're out of memory!");
-					$("#errorMessageContent").html("Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need.");
+					$("#errorMessagesLocalStorageFull").show();
 				}
 			}
 		}
@@ -203,10 +204,12 @@ var Notebook = function() {
 		if(self.isEmpty()) {
 			return;
 		} else {
-			debug.log("Removing all notes and clearing local storage.");
-			self.notes.removeAll();
-			self.saveNotes();
-			self.updateIsEmpty();
+			if(confirm("Are you sure you want to permanently delete all your notes?")) {
+				debug.log("Removing all notes and clearing local storage.");
+				self.notes.removeAll();
+				self.saveNotes();
+				self.updateIsEmpty();
+			}
 		}
 	};
 	

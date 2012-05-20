@@ -46,14 +46,36 @@
 				<a class="brand" href="index.html">Notebook</a>
 				<div class="nav-collapse">
 					<ul class="nav">
+						<li>
+							<a href="index.html"><i class="icon-white icon-home"></i> Home</a>
+						</li>
 						<li class="active">
-							<a href="index.html">Home</a>
+							<a href="app.html"><i class="icon-white icon-cog"></i> Application</a>
 						</li>
 						<li>
-							<a href="app.html">Application</a>
+							<a href="" data-bind="click: toggleAboutModal"><i class="icon-white icon-info-sign"></i> About</a>
+						</li>
+					</ul>
+					<ul class="nav pull-right">
+						<li class="dropdown">
+							<a data-toggle="dropdown" class="dropdown-toggle" href="#">
+								<i class="icon-white icon-share-alt"></i> Share <b class="caret"></b>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<a href="http://bit.ly/notebookapp" target="_blank"><i class="icon-globe"></i> bit.ly/notebookapp</a>
+								</li>
+								<li class="divider"></li>
+								<li>
+									<a>
+										<i class="icon-qrcode"></i>
+										<img src="img/qrcode.png" alt="QR code" />
+									</a>
+								</li>
+							</ul>
 						</li>
 						<li>
-							<a href="" data-bind="click: toggleAboutModal">About</a>
+							<a href="https://github.com/rishabhsrao/notebook"><i class="icon-white icon-random"></i> Fork me on Github</a>
 						</li>
 					</ul>
 				</div>

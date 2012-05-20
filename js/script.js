@@ -3,7 +3,7 @@
 */
 
 $(document).ready(function() {
-	$("#errorMessage").addClass("hide");
+	$("#errorMessagesNoJavascript").hide();
 	
 	// Attach the error handler.
 	$(window).error(function(error, fileName, lineNumber) {
@@ -53,7 +53,7 @@ $(document).ready(function() {
 	$('a, button, input, textarea, img').tooltip();
 	
 	// Remove hide class when everything is ready.
-	$("#pageContainer").fadeIn(1000);
+	$("#pageContainer").show();
 
 	debug.groupEnd();
 });

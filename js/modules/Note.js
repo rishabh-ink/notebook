@@ -27,6 +27,7 @@ var Note = function(title, content) {
 		self.fixIsoStringBug();
 		
 		self.setTitle(title);
+
 		self.setContent(content);
 		self.createdOn(new Date().toISOString());
 		self.isFavourited(false);
@@ -52,6 +53,12 @@ var Note = function(title, content) {
 	 * @since 0.0.1
 	 */
 	Note.prototype.setContent = function(content) {
+		// Convert new lines to breaks.
+		String.prototype.nl2br = function(is_xhtml) {
+			var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';
+			return (this + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+		};
+
 		$.trim(content) ? self.content($.trim(content)) : self.content("No content");
 	};
 	

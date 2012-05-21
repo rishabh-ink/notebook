@@ -26,7 +26,7 @@ var Notebook = function() {
 		if(Modernizr.localstorage) {
 			
 		} else {
-			$("#errorMessagesNoLocalStorage").show();
+			$("#errorMessagesNoLocalStorage").removeClass("hide");
 		}
 		
 		self.loadNotes();
@@ -183,11 +183,11 @@ var Notebook = function() {
 			try {
 				localStorage.setItem(self.STORE_KEY, ko.toJSON(self.notes()));
 				debug.info("Saved to localstorage.");
-				$("#errorMessagesLocalStorageFull").hide();
+				$("#errorMessagesLocalStorageFull").addClass("hide");
 				return true;
 			} catch(e) {
 				if(e == QUOTA_EXCEEDED_ERR) {
-					$("#errorMessagesLocalStorageFull").show();
+					$("#errorMessagesLocalStorageFull").removeClass("hide");
 				}
 			}
 		}

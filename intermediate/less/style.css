@@ -6745,6 +6745,9 @@ i[class^="icon-"] {
 body {
   padding-top: 60px;
   padding-bottom: 40px;
+  overflow-y: scroll;
+  /* Make the vertical scroll bar always appear so it doesn't cause browser-quakes!*/
+
 }
 /*!
  * Bootstrap Responsive v2.0.3

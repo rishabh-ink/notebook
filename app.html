@@ -87,24 +87,26 @@
 		</div>
 	</div>
 	
-	<div id="errorMessagesNoJavascript" class="container">
-		<div class="container-fluid">
-			<div class="row-fluid">
-				<div class="span12">
-					<div class="alert alert-error">
-						<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
-						<p>You need to enable JavaScript in your browser to experience this application.</p>
-
-						<a href="http://www.enable-javascript.com/" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
-							<i class="icon-white icon-info-sign"></i> Get help
-						</a>
+	<div class="container">
+		<noscript id="errorMessagesNoJavascript">
+			<div class="container-fluid">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="alert alert-error">
+							<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
+							<p>You need to enable JavaScript in your browser to experience this application.</p>
+	
+							<a href="http://www.enable-javascript.com/" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
+								<i class="icon-white icon-info-sign"></i> Get help
+							</a>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</noscript>
 	</div>
 	
-	<div id="errorMessagesNoLocalStorage" class="container hide">
+	<div id="errorMessagesNoLocalStorage" class="container">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
@@ -135,7 +137,7 @@
 		</div>
 	</div>
 	
-	<div id="errorMessagesLocalStorageFull" class="container hide">
+	<div id="errorMessagesLocalStorageFull" class="container">
 		<div class="container-fluid">
 			<div class="row-fluid">
 				<div class="span12">
@@ -221,7 +223,7 @@
 							<div class="span12">
 								<div class="welcome-text" data-bind="if: isEmpty">
 									<h4>Hey, welcome to Notebook!</h4>
-									<h5>A simple note taking app.</h5>
+									<h5>An app to scribble your notes.</h5>
 									
 									<hr />
 									
@@ -346,7 +348,7 @@
 					</div>
 					<div class="span10">
 						<h2>Notebook</h2>
-						<h4>An app to scribble your notes.</h4>
+						<p>An app to scribble your notes.</p>
 						<h6>
 							Created by
 							<a href="http://rishabhsrao.github.com">Rishabh Rao</a>

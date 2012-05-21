@@ -3,7 +3,7 @@
 */
 
 $(document).ready(function() {
-	$("#errorMessagesNoJavascript").hide();
+	$("#errorMessagesLocalStorageFull, #errorMessagesNoLocalStorage").hide();
 	
 	// Attach the error handler.
 	$(window).error(function(error, fileName, lineNumber) {

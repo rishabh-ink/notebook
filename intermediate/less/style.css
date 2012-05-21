@@ -8206,6 +8206,9 @@ div.welcome-text {
   width: 69px;
   background-position: -643px 0px;
 }
+div.comments-panel {
+  margin-top: 30px;
+}
 /* Override width */
 @media (max-width: 767px) {
   [class*="span"],

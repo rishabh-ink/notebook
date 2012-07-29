@@ -8079,6 +8079,11 @@ body {
 /* ===== Primary Styles ========================================================
    Author: See humans.txt
    ========================================================================== */
+@media (min-width: 767px) {
+  div.container-fluid.page {
+    min-height: 500px;
+  }
+}
 textarea {
   resize: vertical;
 }
@@ -8088,6 +8093,9 @@ textarea {
 }
 div.welcome-text {
   text-align: center;
+}
+div.new-note-help {
+  margin-top: 5px;
 }
 .notes .content {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -8119,7 +8127,7 @@ div.welcome-text {
   display: inline-block;
 }
 .thanks a.product-sprite {
-  background: url('http://rishabhsrao.github.com/img/footer/footer.png') no-repeat;
+  background: url('../img/footer.png') no-repeat;
   height: 16px;
 }
 .thanks a.product-sprite.html5 {

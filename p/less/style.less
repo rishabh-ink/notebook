@@ -15,6 +15,12 @@ body {
    ========================================================================== */
 @mandatoryRed: #FF4A4A;
 
+@media (min-width: 767px) {
+    div.container-fluid.page {
+        min-height: 500px;
+    }
+}
+
 textarea {
 	resize: vertical;
 }
@@ -28,24 +34,28 @@ div.welcome-text {
     text-align: center;
 }
 
+div.new-note-help {
+    margin-top: 5px;
+}
+
 .notes {
     .content {
         #font > #family > .sans-serif;
         white-space: pre-wrap;
     }
-    
+
     .note-like {
         width: 9%;
     }
-    
+
     .note-actions {
         width: 9%;
     }
-    
+
     .note-display {
        width: 62%;
     }
-    
+
     .note-when {
        width: 20%;
     }
@@ -59,38 +69,38 @@ div.welcome-text {
     p {
         font-size: 1em;
     }
-    
+
     .created-by {
         text-align: center;
     }
-    
+
     a {
         display: inline-block;
     }
-    
+
     a.product-sprite {
-        background: url('http://rishabhsrao.github.com/img/footer/footer.png') no-repeat;
+        background: url('../img/footer.png') no-repeat;
         height: 16px;
     }
-    
+
     a.product-sprite.html5 {
         width: 57px;
         background-position: -259px 0px
     }
-    
+
     a.product-sprite.humanstxt {
         width: 81px;
         background-position: -316px 0px
     }
-    
+
     ol {
         list-style: none;
-        
+
         li {
             display: inline;
         	line-height: 0px;
         	margin-right: 20px;
-            
+
             a.product-sprite.jquery         { width: 65px; background-position: -413px 0px }
             a.product-sprite.initializr		{ width: 16px; background-position: -397px 0px }
             a.product-sprite.h5bp			{ width: 16px; background-position: -243px 0px }
@@ -122,7 +132,7 @@ div.comments-panel {
     .row-fluid [class*="span"] {
         width: 100%;
     }
-    
+
     /* Fix visible desktop problem */
     .visible-desktop {
         display: hidden !important;

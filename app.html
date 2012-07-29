@@ -67,7 +67,7 @@
 									<a href="http://bit.ly/notebookapp"><i class="icon-globe"></i> bit.ly/notebookapp</a>
 								</li>
 								<li class="divider"></li>
-								<li>
+								<li class="visible-desktop">
 									<a>
 										<i class="icon-qrcode"></i>
 										<img src="img/qrcode.png" alt="QR code" />
@@ -142,12 +142,7 @@
 				<div class="span12">
 					<div class="alert alert-error">
 						<h4 class="alert-heading">Holy guacamole! We're out of memory!</h4>
-						<p>Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need.</p>
-
-						<button class="btn btn-danger" data-bind="{ click: deleteAllNotes }" title="Permanently deletes all your notes. WARNING: You will lose all your data. Use with caution.">
-							<i class="icon-white icon-remove-sign"></i> Delete all notes
-						</button>
-
+						<p>Your note was not saved to memory; you will lose data if you close this tab. Please consider deleting a few notes that you don't need and try again.</p>
 					</div>
 				</div>
 			</div>
@@ -155,28 +150,28 @@
 	</div>
 
 	<div class="container hide" id="pageContainer">
-		<div class="container-fluid">
+		<div class="container-fluid page">
 			<div class="row-fluid">
 				<div class="span3">
 					<div id="createNewNoteAccordion" class="accordion">
 						<div class="accordion-group">
 							<div class="accordion-heading">
-								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-star"></i> Create new note</a>
+								<a href="#createNewNoteDiv" data-parent="#createNewNoteAccordion" data-toggle="collapse" class="accordion-toggle"><i class="icon-certificate"></i> Create new note</a>
 							</div>
 							<div class="accordion-body collapse" id="createNewNoteDiv" style="height: 0px;">
 								<div class="accordion-inner">
 									<form id="createNewNoteForm" action="" method="POST">
 										<fieldset>
 											<div class="control-group noteTitle-control-group">
-												<label class="control-label" for="noteTitle">Title</label>
+												<label class="control-label" for="noteTitle"><i class="icon-bookmark"></i> Title <i class="icon-info-sign pull-right" title="The title of your new note."></i></label>
 												<div class="controls">
-													<input name="noteTitle" type="text" class="span12" id="noteTitle" title="What would you like to call your note?" maxlength="256" />
+													<input name="noteTitle" type="text" class="span12" id="noteTitle" maxlength="256" />
 												</div>
 											</div>
 											<div class="control-group noteContent-control-group">
-												<label class="control-label" for="noteContent">Content<span class="mandatory-star">*</span></label>
+												<label class="control-label" for="noteContent"><i class="icon-book"></i> Contents<span class="mandatory-star">*</span> <i title="The contents of your new note. This ones required." class="icon-info-sign pull-right"></i></label>
 												<div class="controls">
-													<textarea name="noteContent" class="span12" id="noteContent" title="What would you like your note to contain? This ones required." maxlength="1024"></textarea>
+													<textarea name="noteContent" class="span12" id="noteContent" maxlength="1024"></textarea>
 												</div>
 											</div>
 										</fieldset>
@@ -193,10 +188,10 @@
 				<div class="span9">
 					<div class="well">
 						<div class="row-fluid" data-bind="if: !isEmpty()">
-							<div class="span6">
+							<div class="span4">
 								<h6>My Notes (<span data-bind="text: notes().length"></span>)</h6>
 							</div>
-							<div class="span6">
+							<div class="span8">
 								<div class="row-fluid">
 									<div class="span8">
 										<div class="btn-group pull-right">
@@ -204,12 +199,12 @@
 												<i class="icon-white icon-upload"></i> Import
 											</button>
 											<button class="btn btn-info btn-mini" data-bind="click: notesToJson" title="Exports your notes in a JSON format.">
-												<i class="icon-white icon-download-alt"></i> Export
+												<i class="icon-white icon-download"></i> Export
 											</button>
 										</div>
 									</div>
 									<div class="span4">
-										<button class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }" title="Permanently deletes all your notes. WARNING: You will lose all your data. Use with caution.">
+										<button class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }" title="WARNING: Deletes all your notes.">
 											<i class="icon-white icon-remove-sign"></i> Delete all
 										</button>
 									</div>
@@ -228,7 +223,7 @@
 
 									<p>You currently don't have any notes. Let's start by creating a new one!</p>
 									<button class="btn btn-large btn-info" data-bind="click: focusCreateNote">
-										<i class="icon-white icon-star"></i> Create new note!
+										<i class="icon-white icon-certificate"></i> Create new note!
 									</button>
 								</div>
 								<table class="notes table table-striped">
@@ -237,13 +232,13 @@
 											<td class="note-like">
 												<div class="row-fluid">
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.toggleStar">
-															<i class="icon-heart" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
+														<button class="btn btn-mini" data-bind="click: $parent.toggleStar" title="Gives this note a star.">
+															<i class="icon-star" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
 														</button>
 													</div>
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.toggleHeart">
-															<i class="icon-star" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
+														<button class="btn btn-mini" data-bind="click: $parent.toggleHeart" title="Gives this note some love.">
+															<i class="icon-heart" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
 														</button>
 													</div>
 												</div>
@@ -260,16 +255,16 @@
 													</div>
 												</div>
 											</td>
-											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn().toLocaleString() }"></time></td>
+											<td class="note-when"><time class="timeago" data-bind="attr: { datetime: createdOn, title: createdOn }"></time></td>
 											<td class="note-actions">
 												<div class="row-fluid">
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.editNote">
+														<button class="btn btn-mini" data-bind="click: $parent.editNote" title="Edit">
 															<i class="icon-edit"></i>
 														</button>
 													</div>
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.removeNote">
+														<button class="btn btn-mini" data-bind="click: $parent.removeNote" title="Delete">
 															<i class="icon-remove"></i>
 														</button>
 													</div>
@@ -289,45 +284,18 @@
 
 		<footer>
 			<div class="row-fluid thanks">
-				<div class="span4">
+				<div class="span12">
 					<div class="row-fluid">
-						<div class="span2">
-							<a class="product-sprite html5" href="http://www.html5rocks.com" title="HTML5 rocks!"></a>
+						<div class="span4">
+							<a class="product-sprite html5" href="http://www.movethewebforward.com" title="HTML5 - Move the web forward."></a>
+						</div>
+						<div class="span4 created-by">
+							<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
 						</div>
 						<div class="span4">
-							<a class="product-sprite humanstxt" href="humans.txt" title="See behind the scenes."></a>
+							<a class="pull-right product-sprite humanstxt" href="humans.txt" title="See who's worked on this app."></a>
 						</div>
 					</div>
-				</div>
-				<div class="span4 created-by">
-					<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
-				</div>
-				<div class="span4">
-				<!-- Uncomment to add Tweet and Like buttons. -->
-					<!-- <div class="row-fluid">
-						<div class="span6">
-							<div class="pull-right">
-								<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://rishabhsrao.github.com/notebook/p/index.html" data-text="Notebook: An app to scribble your notes." data-via="rishabhsrao" data-hashtags="html5">Tweet</a>
-								<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-							</div>
-						</div>
-						<div class="span6">
-							<div id="fb-root"></div>
-							<script>
-								(function(d, s, id) {
-									var js, fjs = d.getElementsByTagName(s)[0];
-									if (d.getElementById(id)) {
-										return;
-									}
-									js = d.createElement(s);
-									js.id = id;
-									js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-									fjs.parentNode.insertBefore(js, fjs);
-								}(document, 'script', 'facebook-jssdk'));
-							</script>
-							<div class="fb-like" data-href="http://rishabhsrao.github.com/notebook/p/index.html?v=2" data-send="false" data-width="450" data-show-faces="true" data-font="arial"></div>
-						</div>
-					</div> -->
 				</div>
 			</div>
 		</footer>
@@ -353,7 +321,7 @@
 							Created by
 							<a href="http://rishabhsrao.github.com">Rishabh Rao</a>
 						</h6>
-						<hr />
+
 						<div>
 							<p><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License.</a></small></p>
 						</div>
@@ -378,8 +346,8 @@
 								<li><a class="product-sprite colourlovers" href="http://www.colourlovers.com" title="COLOURlovers - COLOURlovers is a creative community where people from around the world create and share colors, palettes and patterns, discuss the latest trends and explore colorful articles... All in the spirit of love."></a></li>
 								<li><a class="product-sprite wegraphics" href="http://wegraphics.net/downloads/free-stained-and-faded-social-media-icons" title="WeGraphics - WeGraphics is a creative studio specialized into the creation of graphic design resources."></a></li>
 							</ol>
-						</div> -->
-					</div>
+						</div>
+					</div> -->
 				</div>
 			</div>
 		</div>

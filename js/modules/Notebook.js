@@ -9,14 +9,14 @@
  */
 var Notebook = function() {
 	var self = this;
-	
+
 	self.STORE_KEY = "NOTEBOOK_STORE";
 
 	self.notes = ko.observableArray();
 	self.isEmpty = ko.observable(true);
-	
+
 	self.notesAsJson = ko.observable("");
-	
+
 	/**
 	 * Intializes the <code>Notebook</code> object.
 	 * @author Rishabh Rao
@@ -24,18 +24,18 @@ var Notebook = function() {
 	 */
 	self.initialize = function() {
 		if(Modernizr.localstorage) {
-			
+
 		} else {
 			$("#errorMessagesNoLocalStorage").removeClass("hide");
 		}
-		
+
 		self.loadNotes();
 
 		self.updateIsEmpty();
-		
+
 		debug.info("Successfully created notebook!", self);
 	};
-	
+
 	/**
 	 * Appends a note to the list of notes in this notebook.
 	 * @param {Note} note The new note to be appended.
@@ -46,18 +46,18 @@ var Notebook = function() {
 		if($("#createNewNoteForm").valid()) {
 			var title = $("#noteTitle").val();
 			var content = $("#noteContent").val();
-			
+
 			var note = new Note(title, content);
-			
+
 			debug.info("Adding new note...", note);
-			
+
 			self.notes(self.notes().reverse());
 			self.notes.push(note);
 			self.notes(self.notes().reverse());
-			
-			
+
+
 			var saveStatus = self.saveNotes();
-			
+
 			// Only if the save was successful, then clear the fields, else don't.
 			if(saveStatus) {
 				// Clear the input fields.
@@ -66,9 +66,12 @@ var Notebook = function() {
 			}
 
 			self.updateIsEmpty();
+
+			// HACK WORKAROUND FIXME Initialize tooltips for the newly created notes.
+			$('[title]').tooltip();
 		}
 	};
-	
+
 	/**
 	 * Removes the note from the list of notes in this notebook.
 	 * @author Rishabh Rao
@@ -79,7 +82,7 @@ var Notebook = function() {
 		self.saveNotes();
 		self.updateIsEmpty();
 	};
-	
+
 	/**
 	 * Edit the note.
 	 * @author Rishabh Rao
@@ -87,7 +90,7 @@ var Notebook = function() {
 	 */
 	self.editNote = function(note, event) {
 		debug.info("Editing", note, $(event.target).parent().parent().parent().parent());
-		
+
 		// FIXME Find a better way to select the parent tr.
 		$(event.target).parent().parent().parent().hide();
 
@@ -97,10 +100,10 @@ var Notebook = function() {
 		self.removeNote(note);
 
 		$("#createNewNoteDiv").collapse('show');
-		
+
 		$("#noteContent").focus();
 	};
-	
+
 	/**
 	 * Performs post processing on the newly added note.
 	 * @author Rishabh Rao
@@ -110,10 +113,10 @@ var Notebook = function() {
 		// FIXME This method is being called 3 times.
 		// Initialize jQuery timeago.
 		$("time.timeago").timeago();
-		
+
 		// TODO Use http://shakenandstirredweb.com/240/jquery-moreless-text
 	};
-	
+
 	/**
 	 * Makes the user focus on the create note form.
 	 * @author Rishabh Rao
@@ -123,7 +126,7 @@ var Notebook = function() {
 		$("#createNewNoteDiv").collapse('show');
 		$("#noteTitle").focus();
 	};
-	
+
 	/**
 	 * Updates isEmpty in order to show no notes message.
 	 * @author Rishabh Rao
@@ -136,7 +139,7 @@ var Notebook = function() {
 			self.isEmpty(false);
 		}
 	};
-	
+
 	/**
 	 * Loads the notes stored in localStorage.
 	 * @author Rishabh Rao
@@ -145,34 +148,34 @@ var Notebook = function() {
 	self.loadNotes = function() {
 		if(Modernizr.localstorage) {
 			var notebookData = localStorage.getItem(self.STORE_KEY);
-			
+
 			if(notebookData) {
 				debug.info("Found previously stored data! Applying Knockout mapping...", notebookData);
 				var notesJSON = JSON.parse(notebookData);
-				
+
 				$.each(notesJSON, function(index, item) {
 					debug.log(index, item);
 					var note = new Note();
-					
+
 					note.setTitle(item.title);
 					note.setContent(item.content);
 					note.createdOn(item.createdOn);
 					note.isFavourited(item.isFavourited);
 					note.isStarred(item.isStarred);
-					
+
 					self.notes.push(note);
 				});
-				
+
 				debug.info("Restored from localstorage.");
 			} else {
 				debug.warn("No previously stored data found.");
 			}
-			
+
 		} else {
 			debug.warn("No localstorage capability found.");
 		}
 	};
-	
+
 	/**
 	 * Saves the notes to localStorage.
 	 * @author Rishabh Rao
@@ -194,7 +197,7 @@ var Notebook = function() {
 
 		return false;
 	};
-	
+
 	/**
 	 * Deletes all notes and clears local storage.
 	 * @author Rishabh Rao
@@ -212,7 +215,7 @@ var Notebook = function() {
 			}
 		}
 	};
-	
+
 	/**
 	 * Handles clicking of the heart/star button.
 	 * @author Rishabh Rao
@@ -222,7 +225,7 @@ var Notebook = function() {
 		element.toggleStar();
 		self.saveNotes();
 	};
-	
+
 	/**
 	 * Handles clicking of the heart/star button.
 	 * @author Rishabh Rao
@@ -232,7 +235,7 @@ var Notebook = function() {
 		element.toggleHeart();
 		self.saveNotes();
 	};
-	
+
 	/**
 	 * Hides/shows About Me box.
 	 * @author Rishabh Rao
@@ -241,7 +244,7 @@ var Notebook = function() {
 	self.toggleAboutModal = function() {
 		$("#aboutMe").modal("toggle");
 	};
-	
+
 	/**
 	 * Converts all notes to a JSON array.
 	 * @author Rishabh Rao

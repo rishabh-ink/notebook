@@ -9,13 +9,13 @@
  */
 var Note = function(title, content) {
 	var self = this;
-	
+
 	self.title = ko.observable();
 	self.content = ko.observable();
 	self.createdOn = ko.observable();
 	self.isFavourited = ko.observable();
 	self.isStarred = ko.observable();
-	
+
 	/**
 	 * Intializes the <code>Note</code> object with a <code>title</code> and a <code>content</code>.
 	 * @param {String} title A short title for the Note.
@@ -25,7 +25,7 @@ var Note = function(title, content) {
 	 */
 	Note.prototype.initialize = function(title, content) {
 		self.fixIsoStringBug();
-		
+
 		self.setTitle(title);
 
 		self.setContent(content);
@@ -35,7 +35,7 @@ var Note = function(title, content) {
 
 		debug.info("Successfully created note!", self);
 	};
-	
+
 	/**
 	 * Setter for title.
 	 * @param {String} title A short title for the Note.
@@ -45,7 +45,7 @@ var Note = function(title, content) {
 	Note.prototype.setTitle = function(title) {
 		$.trim(title) ? self.title($.trim(title)) : self.title("No title");
 	};
-	
+
 	/**
 	 * Setter for content.
 	 * @param {String} content A descriptive content for the Note.
@@ -61,7 +61,7 @@ var Note = function(title, content) {
 
 		$.trim(content) ? self.content($.trim(content)) : self.content("No content");
 	};
-	
+
 	/**
 	 * Toggles starred.
 	 * @author Rishabh Rao
@@ -70,7 +70,7 @@ var Note = function(title, content) {
 	self.toggleStar = function() {
 		self.isStarred(!self.isStarred());
 	};
-	
+
 	/**
 	 * Toggles heart.
 	 * @author Rishabh Rao
@@ -79,7 +79,7 @@ var Note = function(title, content) {
 	self.toggleHeart = function() {
 		self.isFavourited(!self.isFavourited());
 	};
-	
+
 	/**
 	 * Fixes the missing Date.toISOString in browsers which don't have this function.
 	 * @author Robert S. Robbins (williamsportwebdeveloper.com/cgi/wp/?p=503)
@@ -89,7 +89,7 @@ var Note = function(title, content) {
 			var padzero = function(n) {
 				return n < 10 ? '0' + n : n;
 			};
-			
+
 			var pad2zeros = function(n) {
 				if (n < 100) {
 					n = '0' + n;
@@ -99,7 +99,7 @@ var Note = function(title, content) {
 				}
 				return n;
 			};
-			
+
 			Date.prototype.toISOString = function() {
 				return this.getUTCFullYear() + '-'
 						+ padzero(this.getUTCMonth() + 1) + '-'
@@ -111,6 +111,6 @@ var Note = function(title, content) {
 			};
 		}
 	};
-	
+
 	self.initialize(title, content);
 };

@@ -4,15 +4,15 @@
 
 $(document).ready(function() {
 	$("#errorMessagesLocalStorageFull, #errorMessagesNoLocalStorage").hide();
-	
+
 	// Attach the error handler.
 	$(window).error(function(error, fileName, lineNumber) {
 		debug.error(error, fileName, lineNumber);
 	});
-	
+
 	debug.group("Notebook");
 	debug.info("Starting Notebook...");
-	
+
 	// Create main Application object.
 	debug.group("Main Application object");
 	debug.info("Creating main Notebook object...");
@@ -20,11 +20,11 @@ $(document).ready(function() {
 	var mainNotebook = new Notebook();
 	debug.info("Main Notebook object created successfully.", mainNotebook);
 	debug.groupEnd();
-	
+
 	// Apply Knockout bindings.
 	debug.info("Applying Knockout bindings", mainNotebook);
 	ko.applyBindings(mainNotebook);
-	
+
 	// Initialize jquery.validate.
 	debug.info("Initializing jQuery.validate");
 	$("#createNewNoteForm").validate({
@@ -50,8 +50,8 @@ $(document).ready(function() {
 	});
 
 	// Intialize tooltip.
-	$('a, button, input, textarea, img').tooltip();
-	
+	$('[title]').tooltip();
+
 	// Remove hide class when everything is ready.
 	$("#pageContainer").show();
 

@@ -95,7 +95,7 @@
 							<h4 class="alert-heading">Oh snap! You don't have JavaScript enabled on your browser.</h4>
 							<p>You need to enable JavaScript in your browser to experience this application.</p>
 
-							<a href="http://www.enable-javascript.com/" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser.">
+							<a href="http://www.enable-javascript.com/" class="btn btn-info" title="Shows you instructions on how to enable JavaScript on your browser">
 								<i class="icon-white icon-info-sign"></i> Get help
 							</a>
 						</div>
@@ -115,16 +115,16 @@
 
 						<div class="row-fluid">
 							<div class="span3">
-								<button class="btn btn-info" data-bind="click: notesToJson" title="Lets you export all your notes in JSON format.">
+								<button class="btn btn-info" data-bind="click: notesToJson" title="Export all your notes in the JSON format">
 									<i class="icon-white icon-download-alt"></i> Export all notes
 								</button>
 							</div>
 							<div class="span9">
 								<div class="btn-group">
-									<a href="http://browsehappy.com" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy!">
+									<a href="http://browsehappy.com" class="btn btn-success" title="Takes you to browsehappy.com where you can upgrade your browser and be happy">
 										<i class="icon-white icon-certificate"></i> Upgrade browser
 									</a>
-									<a href="http://www.google.com/chromeframe/?redirect=true" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame. It's the next best thing!">
+									<a href="http://www.google.com/chromeframe/?redirect=true" class="btn btn-success" title="If you can't upgrade your browser, then you should install Google Chrome Frame - it's the next best thing">
 										<i class="icon-white icon-fullscreen"></i> Install Chrome Frame
 									</a>
 								</div>
@@ -163,13 +163,13 @@
 									<form id="createNewNoteForm" action="" method="POST">
 										<fieldset>
 											<div class="control-group noteTitle-control-group">
-												<label class="control-label" for="noteTitle"><i class="icon-bookmark"></i> Title <i class="icon-info-sign pull-right" title="The title of your new note."></i></label>
+												<label class="control-label" for="noteTitle"><i class="icon-bookmark"></i> Title <i class="icon-info-sign pull-right" title="The title of your new note"></i></label>
 												<div class="controls">
 													<input name="noteTitle" type="text" class="span12" id="noteTitle" maxlength="256" />
 												</div>
 											</div>
 											<div class="control-group noteContent-control-group">
-												<label class="control-label" for="noteContent"><i class="icon-book"></i> Contents<span class="mandatory-star">*</span> <i title="The contents of your new note. This ones required." class="icon-info-sign pull-right"></i></label>
+												<label class="control-label" for="noteContent"><i class="icon-book"></i> Contents<span class="mandatory-star">*</span> <i title="The contents of your new note (required)" class="icon-info-sign pull-right"></i></label>
 												<div class="controls">
 													<textarea name="noteContent" class="span12" id="noteContent" maxlength="1024"></textarea>
 												</div>
@@ -195,16 +195,16 @@
 								<div class="row-fluid">
 									<div class="span8">
 										<div class="btn-group pull-right">
-											<button class="btn btn-info btn-mini" disabled="disabled" title="This feature is not yet implemented.">
+											<button class="btn btn-info btn-mini" disabled="disabled" title="This feature is not yet implemented">
 												<i class="icon-white icon-upload"></i> Import
 											</button>
-											<button class="btn btn-info btn-mini" data-bind="click: notesToJson" title="Exports your notes in a JSON format.">
+											<button class="btn btn-info btn-mini" data-bind="click: notesToJson" title="Export all your notes in the JSON format">
 												<i class="icon-white icon-download"></i> Export
 											</button>
 										</div>
 									</div>
 									<div class="span4">
-										<button class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }" title="WARNING: Deletes all your notes.">
+										<button class="btn btn-danger btn-mini pull-right" data-bind="{ click: deleteAllNotes }" title="Delete all your notes">
 											<i class="icon-white icon-remove-sign"></i> Delete all
 										</button>
 									</div>
@@ -232,12 +232,12 @@
 											<td class="note-like">
 												<div class="row-fluid">
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.toggleStar" title="Gives this note a star.">
+														<button class="btn btn-mini" data-bind="click: $parent.toggleStar" title="Favourite this note">
 															<i class="icon-star" data-bind="css: { '': isStarred, 'icon-white': !(isStarred()) }"></i>
 														</button>
 													</div>
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.toggleHeart" title="Gives this note some love.">
+														<button class="btn btn-mini" data-bind="click: $parent.toggleHeart" title="Love this note">
 															<i class="icon-heart" data-bind="css: { '': isFavourited, 'icon-white': !(isFavourited()) }"></i>
 														</button>
 													</div>
@@ -259,12 +259,12 @@
 											<td class="note-actions">
 												<div class="row-fluid">
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.editNote" title="Edit">
+														<button class="btn btn-mini" data-bind="click: $parent.editNote" title="Edit this note">
 															<i class="icon-edit"></i>
 														</button>
 													</div>
 													<div class="span6">
-														<button class="btn btn-mini" data-bind="click: $parent.removeNote" title="Delete">
+														<button class="btn btn-mini" data-bind="click: $parent.removeNote" title="Delete this note">
 															<i class="icon-remove"></i>
 														</button>
 													</div>
@@ -284,18 +284,14 @@
 
 		<footer>
 			<div class="row-fluid thanks">
-				<div class="span12">
-					<div class="row-fluid">
-						<div class="span4">
-							<a class="product-sprite html5" href="http://www.movethewebforward.com" title="HTML5 - Move the web forward."></a>
-						</div>
-						<div class="span4 created-by">
-							<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
-						</div>
-						<div class="span4">
-							<a class="pull-right product-sprite humanstxt" href="humans.txt" title="See who's worked on this app."></a>
-						</div>
-					</div>
+				<div class="span4">
+					<a class="product-sprite html5" href="http://www.movethewebforward.com" title="HTML5 - Move the web forward"></a>
+				</div>
+				<div class="span4 created-by">
+					<p><small>Created by <a href="http://rishabhsrao.github.com">Rishabh Rao</a></small></p>
+				</div>
+				<div class="span4">
+					<a class="pull-right product-sprite humanstxt" href="humans.txt" title="See who's worked on this app"></a>
 				</div>
 			</div>
 		</footer>
@@ -323,7 +319,7 @@
 						</h6>
 
 						<div>
-							<p><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License.</a></small></p>
+							<p><small>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/3.0/">Creative Commons Attribution 3.0 Unported License</a>.</small></p>
 						</div>
 						<!-- <div class="thanks">
 							<p>Many thanks to...</p>
